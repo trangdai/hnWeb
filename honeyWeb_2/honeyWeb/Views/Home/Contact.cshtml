@@ -1,0 +1,99 @@
+﻿@{
+    ViewBag.Title = "Contact";
+}
+
+<hgroup class="title">
+    <!--<h1>@ViewBag.Title.</h1>-->
+    <!--<h2>@ViewBag.Message</h2>-->
+</hgroup>
+<section class="contact">
+
+	<div class="container_12">
+		<div class="grid_12">
+
+			<div class="wrapper">
+
+				<div class="grid_8 alpha">
+                    <!--
+					<div class="address">
+						<figure class="img_inner">
+								<iframe src="http://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=Brooklyn,+New+York,+NY,+United+States&amp;aq=0&amp;sll=37.0625,-95.677068&amp;sspn=61.282355,146.513672&amp;ie=UTF8&amp;hq=&amp;hnear=Brooklyn,+Kings,+New+York&amp;ll=40.649974,-73.950005&amp;spn=0.01628,0.025663&amp;z=14&amp;iwloc=A&amp;output=embed"></iframe>
+						</figure>
+					</div>
+                    -->
+					<h2 class="v2">Đặt hàng - Liên hệ</h2>
+                    <div class="address" style="width:100%">
+					<form id="contact-form" method="post">
+                        @using (@Ajax.BeginForm("Contact", "Home", new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "ketquaContact" }, new { id = "IdformContact" }))
+                        {
+                            @Html.ValidationSummary(true)
+                                
+								<div class="success-message">Thông tin liên hệ! <strong>We will be in touch soon.</strong></div>
+								<div class="wrapper">
+									<label class="name">
+										<!--<input type="text" placeholder="Name*:" data-constraints="aRequired aJustLetters">-->
+                                        <input type="text" name="Name" placeholder="Họ tên*:" data-constraints=""/>
+										<span class="empty-message">*This field is required.</span>
+										<span class="error-message"> *This is not a valid name.</span>
+									</label>
+									<label class="email">
+										<!--<input type="text" placeholder="Email*:" data-constraints="aRequired aEmail">-->
+                                        <input type="text" name="Email" placeholder="Email*:" data-constraints=""/>
+										<span class="empty-message">*This field is required.</span>
+										<span class="error-message">*This is not a valid email.</span>
+									</label>
+									<label class="phone">
+										<!--<input type="text" placeholder="Phone:" data-constraints="aRequired aJustNumbers">-->
+                                        <input type="text" name="Phone" placeholder="Số điện thoại:" data-constraints=""/>
+										<span class="empty-message">*This field is required.</span>
+										<span class="error-message">*This is not a valid phone.</span>
+									</label>
+								</div>
+								<label class="message">
+									<!--<textarea placeholder="Message:" data-constraints='aRequired aLength(min=20,max=999999)'></textarea>-->
+                                    <textarea name="Quantity" placeholder="Số lượng:" data-constraints='' ></textarea>
+									<span class="empty-message">*This field is required.</span>
+									<span class="error-message">*The message is too short.</span>
+								</label>
+
+								<div class="form_btns" style="width:80%">
+									<a href="#" data-type="reset" class="more_btn2">Clear</a> 
+									<a href="#"><input type="submit" value="Submit"/></a>
+								</div>  
+						}
+                       </form>
+                    </div>
+					<div class="grid_4 alpha">
+						<address>
+							<dl>
+									<dt>Mật ong miệt vườn</dt>
+									<dd><span>Freephone:</span>+1 800 559 6580</dd>
+									<dd><span>Telephone:</span>+1 800 603 6035</dd>
+									<dd><span>FAX:</span>+1 800 889 9898 </dd>
+									<dd>E-mail: <a href="#" class="link2">mail@demolink.org</a></dd>
+							</dl>
+						</address>
+					</div>
+                    <!--
+					<div class="grid_4 omega">
+						<address>
+							<dl>
+									<dt>9863 - 9867 Mill Road,<br>Cambridge, MG09 99HT</dt>
+									<dd><span>Freephone:</span>+1 800 559 6580</dd>
+									<dd><span>Telephone:</span>+1 800 603 6035</dd>
+									<dd><span>FAX:</span>+1 800 889 9898 </dd>
+									<dd>E-mail: <a href="#" class="link2">mail@demolink.org</a></dd>
+							</dl>
+						</address>
+					</div>
+                    -->
+				</div>
+
+				<div class="grid_4 omega">
+				</div>
+			</div>
+			<div class="indent1"></div>
+		</div>
+	</div>
+
+</section>

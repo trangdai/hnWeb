@@ -1,0 +1,78 @@
+﻿@model honeyWeb.Models.SanPham
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>SanPham</legend>
+
+        @Html.HiddenFor(model => model.id)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ten_sp)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ten_sp)
+            @Html.ValidationMessageFor(model => model.ten_sp)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.gia_sp)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.gia_sp)
+            @Html.ValidationMessageFor(model => model.gia_sp)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.khuyen_mai)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.khuyen_mai)
+            @Html.ValidationMessageFor(model => model.khuyen_mai)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.tinh_trang)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.tinh_trang)
+            @Html.ValidationMessageFor(model => model.tinh_trang)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ghi_chu)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ghi_chu)
+            @Html.ValidationMessageFor(model => model.ghi_chu)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.visible)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.visible)
+            @Html.ValidationMessageFor(model => model.visible)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

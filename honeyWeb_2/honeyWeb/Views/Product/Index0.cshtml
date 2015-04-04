@@ -1,0 +1,422 @@
+﻿@model IEnumerable<honeyWeb.Models.SanPham>
+@{
+    Layout = null;
+    ViewBag.Title = "Index";
+}
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+
+	<meta charset="utf-8">
+	<meta name="format-detection" content="telephone=no">
+	<link rel="icon" href="wt_48175\images\favicon.ico" type="image/x-icon">
+	<link rel="shortcut icon" href="wt_48175\images\favicon.ico" type="image/x-icon">
+	<link rel="stylesheet" href="wt_48175\css\style.css">
+	<script src="wt_48175\js\jquery.js"></script>
+	<script src="wt_48175\js\jquery-migrate-1.1.js"></script>
+	<script src="wt_48175\js\jquery.easing.1.js"></script>
+	<script src="wt_48175\js\scroll_to_top.js"></script>
+	<script src="wt_48175\js\script.js"></script>
+	<script src="wt_48175\js\sForm.js"></script>
+	<script src="wt_48175\js\jquery (1).js"></script>
+	<script src="wt_48175\js\superfish.js"></script>
+	<script src="wt_48175\js\jquery (2).js"></script>
+	<script src="wt_48175\js\touchTouch.js"></script>
+		 
+	<script src="wt_48175\js\camera.js"></script>
+	<!--[if (gt IE 9)|!(IE)]><!-->
+	<script src="wt_48175\js\jquery.mobile.customized.js"></script>
+	<!--<![endif]-->
+
+	<script src="wt_48175\js\owl.js"></script> 
+     <script>
+       $(document).ready(function(){
+        /*carousel*/
+        var owl = $("#owl"); 
+            owl.owlCarousel({
+            items : 1, //10 items above 1000px browser width
+            itemsDesktop : [995,1], //5 items between 1000px and 901px
+            itemsDesktopSmall : [767, 1], // betweem 900px and 601px
+            itemsTablet: [700, 1], //2 items between 600 and 0
+            itemsMobile : [479, 1], // itemsMobile disabled - inherit from itemsTablet option
+            navigation : false,
+            pagination :  true
+            });
+     }); 
+     
+     
+     </script>
+
+		 <!--[if lt IE 8]>
+			 <div style=' clear: both; text-align:center; position: relative;'>
+				 <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+					 <img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." />
+				 </a>
+			</div>
+		<![endif]-->
+		<!--[if lt IE 9]>
+			<script src="js/html5shiv.js"></script>
+			<link rel="stylesheet" type="text/css" media="screen" href="css/ie.css">
+		<![endif]-->
+
+</head>
+<body>
+    <div>
+@foreach (var item in ViewBag.Prods) {
+    <tr>
+        <td>
+            id: @item.id
+        </td>
+        <td>
+            tên: @item.ten_sp
+        </td>
+        <td>
+            giá: @item.gia_sp
+        </td>
+        <td>
+            tình trạng: @item.tinh_trang
+        </td>
+    </tr>
+}        
+    </div>
+
+<!--button back top-->
+		<div id="back-top">TOP</div>    
+
+		<header>
+		
+				<div class="container_12">
+					<div class="grid_12 txt_cntr">
+					
+						<div class="white_bg">
+							<h1><a href="wt_48175\index.html"><img src="wt_48175\images\logo.png" alt="Honey"></a></h1>
+							<nav>
+									<ul class="sf-menu">
+											<li class="current"><a href="#">Trang chủ<strong></strong></a></li>
+											<li><a href="wt_48175\index-2.html"><span></span>Honey Products<strong></strong></a>
+													<ul class='submenu'>
+															<li><a href="#">Lorem</a></li>
+															<li class='sub-menu'><a href="#">Drtyop </a>
+																	<ul class='submenu2'>
+																			<li><a href="#">Latest</a></li>
+																			<li><a href="#">Archive</a></li>
+																	</ul>
+															</li>
+													</ul>
+											</li>
+
+											<li><a href="wt_48175\index-3.html">Sản phẩm<strong></strong></a></li>
+											<li><a href="wt_48175\index-4.html">Đặt hàng<strong></strong></a></li>
+											<li id="last-li"><a href="wt_48175\index-5.html">Liên hệ<strong></strong></a></li>
+									</ul>
+							</nav>
+						</div>
+						
+					</div>
+				</div>
+		
+			
+		</header>
+
+
+<div class="main">
+		<div class="div-content">    
+<!--==============================header=================================-->
+				
+				
+				
+					<div class="slider_box">
+						<div class="slider_box2">
+							<div class="container_12">
+								<div class="grid_12">
+									<div class="slider_wrapper">
+										<div class="" id="camera_wrap">
+												<div data-src="images/slide1.jpg">
+												</div>
+												<div data-src="images/slide2.jpg">
+												</div>
+												<div data-src="images/slide3.jpg">
+												</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+<!--=======content================================-->
+
+				<div class="wrapper">
+					<div class="container_12">
+						<div class="grid_12">
+
+							<div class="grid_4 alpha txt_cntr sign1 pos_rel">
+								<img alt="" src="wt_48175\images\page1_icon1.png" class="img1 no_resize">
+								<h3><a href="#">Duis autemve</a></h3>
+								<p class="w180 marTop_10">Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet </p>
+							</div>
+
+							<div class="grid_4 txt_cntr sign2 pos_rel">
+								<img alt="" src="wt_48175\images\page1_icon2.png" class="img1 no_resize">
+								<h3><a href="#">Eodem modot</a></h3>
+								<p class="w180 marTop_10">Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet </p>
+							</div>
+
+							<div class="grid_4 omega txt_cntr">
+								<img alt="" src="wt_48175\images\page1_icon3.png" class="img1 no_resize">
+								<h3><a href="#">Ut wisi enim adm</a></h3>
+								<p class="w180 marTop_10">Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet </p>
+							</div>
+
+
+						</div>
+					</div>
+				</div>
+
+
+				<div class="box-1">
+					<div class="container_12">
+						<div class="grid_12">
+
+							<div class="grid_4 alpha">
+								<p class="title_subscr">Newsletter</p>
+							</div>
+
+							<div class="grid_8 omega">
+								<form id="subscribe-form">
+	                  <div class="success">Your subscription request has been sent!</div>
+	                  <fieldset>
+	                      <div class="grid_5 alpha">
+	                      	<label class="email">
+  	                        <input type="email" value="E-mail" onfocus="myFocus(this);" onblur="myBlur(this);">
+  	                        <span class="error">*This is not a valid email address.</span></label>
+	                      </div>
+	                      <div class="grid_3 omega">
+	                      	<div class="btns"><a href="#" class="more_btn" data-type="submit">Subscribe</a></div>
+	                      </div>
+	                  </fieldset>
+	              </form>
+							</div>
+
+
+						</div>
+					</div>
+				</div>
+
+
+
+
+				<div class="container_12">
+					<div class="grid_12">
+
+						<div class="wrapper">
+							<h2>
+								<img alt="" src="wt_48175\images\cell_sign.png" class="img2 no_resize">
+								Products
+							</h2>
+
+							<div class="grid_3 alpha">
+								<div class="wrapp  maxheight">
+									<a href="#" class="img_project">
+										<img alt="" src="wt_48175\images\page1_pic1.jpg" class="">
+										<span class="price_sign">$7</span>
+									</a>
+									<h3><a href="#">Duis autemve</a></h3>
+									<p>Nam liber teor cum soluta nob is</p>
+								</div>
+
+								<div class="wrapper marTop1">
+									<a href="#" class="img_project">
+										<img alt="" src="wt_48175\images\page1_pic2.jpg" class="">
+										<span class="price_sign">$9</span>
+									</a>
+									<h3><a href="#">Fitterarum formas</a></h3>
+									<p>Xam li tempor cum soluta nob is</p>
+								</div>
+							</div>
+
+							<div class="grid_3">
+								<div class="wrapp  maxheight">
+									<a href="#" class="img_project">
+										<img alt="" src="wt_48175\images\page1_pic3.jpg" class="">
+										<span class="price_sign">$5</span>
+									</a>
+									<h3><a href="#">Lorem ipsum do</a></h3>
+									<p>Tempor cum soluta nob is</p>
+								</div>
+
+								<div class="wrapper marTop1">
+									<a href="#" class="img_project">
+										<img alt="" src="wt_48175\images\page1_pic4.jpg" class="">
+										<span class="price_sign">$15</span>
+									</a>
+									<h3><a href="#">Fegentis in</a></h3>
+									<p>Ror cum soluta nob is eleifend</p>
+								</div>
+							</div>
+
+							<div class="grid_3">
+								<div class="wrapp  maxheight">
+									<a href="#" class="img_project">
+										<img alt="" src="wt_48175\images\page1_pic5.jpg" class="">
+										<span class="price_sign">$17</span>
+									</a>
+									<h3><a href="#">Claritas est etia</a></h3>
+									<p>Hiber tempor cum soluta nob is</p>
+								</div>
+
+								<div class="wrapper marTop1">
+									<a href="#" class="img_project">
+										<img alt="" src="wt_48175\images\page1_pic6.jpg" class="">
+										<span class="price_sign">$16</span>
+									</a>
+									<h3><a href="#">Decima et quinta</a></h3>
+									<p>Empor cum soluta nob is eleifend</p>
+								</div>
+							</div>
+
+							<div class="grid_3 omega">
+								<div class="wrapp  maxheight">
+									<a href="#" class="img_project">
+										<img alt="" src="wt_48175\images\page1_pic7.jpg" class="">
+										<span class="price_sign">$6</span>
+									</a>
+									<h3><a href="#">Investigationes dem</a></h3>
+									<p>Nam liber teor cum soluta nob is </p>
+								</div>
+
+								<div class="wrapper marTop1">
+									<a href="#" class="img_project">
+										<img alt="" src="wt_48175\images\page1_pic8.jpg" class="">
+										<span class="price_sign">$3</span>
+									</a>
+									<h3><a href="#">Rigation quin</a></h3>
+									<p>Nam liber teor cum soluta nob is </p>
+								</div>
+							</div>
+
+
+						</div>
+
+				</div>
+			</div>
+
+			<div class="box-2">
+				<div class="container_12">
+					<div class="grid_12">
+
+						<div class="grid_4 alpha">
+
+							<div id="owl">
+	              <div class="item">
+	              	<blockquote>
+	              		<p>“Xam liber tempor cum so luta nob is eleifend option congue nihil imperdiet doming id quod mazim pla cerat facer possim  nihil imperdiet doming id qu”</p>
+	              	</blockquote>
+	              	<p class="bq_txt1">Amanda Smith</p>
+	              	<p class="bq_txt2">Office Manager, USA</p>
+	              </div>
+
+	              <div class="item">
+	              	<blockquote>
+	              		<p>“congue nihil imperdiet doming id am liber tempor cum so luta nob is eleifend option quod mazim pla cerat facer possim  nihil imperdiet doming id qu”</p>
+	              	</blockquote>
+	              	<p class="bq_txt1">Jessy Smith</p>
+	              	<p class="bq_txt2">Office Manager, USA</p>
+	              </div>
+	            </div>
+							
+						</div>
+
+						<div class="grid_8 omega">
+							<p class="title_order">Ordering</p>
+							<div class="wrapper marTop2">
+								<p class="num_txt">1.</p>
+								<div class="box2">
+									<p class="color1">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea.</p>
+								</div>
+							</div>
+							<div class="wrapper marTop3">
+								<p class="num_txt">2.</p>
+								<div class="box2">
+									<p class="color1">Sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imper.</p>
+								</div>
+							</div>
+						</div>
+
+
+					</div>
+				</div>
+			</div>
+
+
+<!--=======footer=================================-->
+				<footer>
+					<div class="container_12">
+						<div class="grid_12">
+
+							<div class="main-footer">
+								<h1><a href="wt_48175\index.html"><img src="wt_48175\images\logo_footer.png" alt="Honey"></a></h1>
+								<p class="priv_txt">&copy; <span id="copyright-year"></span> | <a href="wt_48175\index-6.html">Privacy policy</a><br><!--{%FOOTER_LINK} --></p>
+								<div class="clear"></div>
+							</div>
+
+						</div>
+					</div>
+				</footer>	
+					
+		</div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        jQuery('#camera_wrap').camera({
+            loader: false,
+            pagination: true,
+            thumbnails: false,
+            height: '43.624494142%',
+            fx: 'curtainSliceRight',
+            rows: '1',
+            slicedCols: '5',
+            slicedRows: '1',
+            caption: false
+        });
+
+    });
+
+
+    $(document).ready(function () {
+        // Initialize the gallery
+        $('.magnifier2').touchTouch();
+    });
+
+    function myFocus(element) {
+        if (element.value == element.defaultValue) {
+            element.focus();
+            element.value = '';
+        }
+    }
+    function myBlur(element) {
+        if (element.value == '') {
+            element.blur();
+            element.value = element.defaultValue;
+        }
+    }
+</script>
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-7078796-5']);
+    _gaq.push(['_trackPageview']);
+    (function () {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();</script>
+
+</body>
+</html>

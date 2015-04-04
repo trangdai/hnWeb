@@ -1,0 +1,57 @@
+﻿@model honeyWeb.Models.SanPham
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>SanPham</legend>,
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ten_sp)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ten_sp)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.gia_sp)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.gia_sp)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.khuyen_mai)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.khuyen_mai)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.tinh_trang)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.tinh_trang)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ghi_chu)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ghi_chu)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.visible)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.visible)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
