@@ -1,0 +1,386 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="HoneyDBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="HoneyDBModelStoreContainer">
+          <EntitySet Name="BaiViet" EntityType="HoneyDBModel.Store.BaiViet" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ChiTietKhuyenMai" EntityType="HoneyDBModel.Store.ChiTietKhuyenMai" store:Type="Tables" store:Schema="dbo" store:Name="ChiTietKhuyenMai">
+            <DefiningQuery>SELECT 
+      [ChiTietKhuyenMai].[id] AS [id], 
+      [ChiTietKhuyenMai].[id_sp] AS [id_sp], 
+      [ChiTietKhuyenMai].[id_km] AS [id_km], 
+      [ChiTietKhuyenMai].[ghi_chu] AS [ghi_chu]
+      FROM [dbo].[ChiTietKhuyenMai] AS [ChiTietKhuyenMai]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="DaiLy" EntityType="HoneyDBModel.Store.DaiLy" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="DonDatHang" EntityType="HoneyDBModel.Store.DonDatHang" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="KhachHang" EntityType="HoneyDBModel.Store.KhachHang" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="KhuyenMai" EntityType="HoneyDBModel.Store.KhuyenMai" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="LoaiKhachHang" EntityType="HoneyDBModel.Store.LoaiKhachHang" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="SanPham" EntityType="HoneyDBModel.Store.SanPham" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="TinhTrangSanPham" EntityType="HoneyDBModel.Store.TinhTrangSanPham" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="TrangThaiDonHang" EntityType="HoneyDBModel.Store.TrangThaiDonHang" store:Type="Tables" Schema="dbo" />
+        </EntityContainer>
+        <EntityType Name="BaiViet">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="tieu_de" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="noi_dung" Type="ntext" Nullable="false" />
+          <Property Name="thoi_gian" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'HoneyDB.dbo.ChiTietKhuyenMai' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="ChiTietKhuyenMai">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="id_sp" />
+            <PropertyRef Name="id_km" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id_sp" Type="nvarchar" Nullable="false" MaxLength="10" />
+          <Property Name="id_km" Type="nvarchar" Nullable="false" MaxLength="10" />
+          <Property Name="ghi_chu" Type="ntext" />
+        </EntityType>
+        <EntityType Name="DaiLy">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="nvarchar" Nullable="false" MaxLength="10" />
+          <Property Name="id_khach_hang" Type="nvarchar" Nullable="false" MaxLength="10" />
+          <Property Name="so_luong_tich_luy" Type="int" Nullable="false" />
+          <Property Name="ghi_chu" Type="ntext" />
+        </EntityType>
+        <EntityType Name="DonDatHang">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="nvarchar" Nullable="false" MaxLength="10" />
+          <Property Name="id_kh" Type="nvarchar" Nullable="false" MaxLength="10" />
+          <Property Name="id_sp" Type="nvarchar" Nullable="false" MaxLength="10" />
+          <Property Name="so_luong_sp" Type="int" Nullable="false" />
+          <Property Name="thoi_gian" Type="datetime" Nullable="false" />
+          <Property Name="tinh_trang" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="KhachHang">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="nvarchar" Nullable="false" MaxLength="10" />
+          <Property Name="username" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="password" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="ho_ten" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="sdt" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="email" Type="nvarchar" MaxLength="20" />
+          <Property Name="dia_chi" Type="nvarchar" MaxLength="100" />
+          <Property Name="loai_khach_hang" Type="nvarchar" Nullable="false" MaxLength="10" />
+          <Property Name="visible" Type="bit" Nullable="false" />
+          <Property Name="so_luong_tich_luy" Type="int" />
+        </EntityType>
+        <EntityType Name="KhuyenMai">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="nvarchar" Nullable="false" MaxLength="10" />
+          <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="thoi_gian_bat_dau" Type="date" Nullable="false" />
+          <Property Name="thoi_gian_ket_thuc" Type="date" Nullable="false" />
+          <Property Name="ti_le_giam_gia" Type="float" Nullable="false" />
+          <Property Name="ghi_chu" Type="ntext" />
+        </EntityType>
+        <EntityType Name="LoaiKhachHang">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="nvarchar" Nullable="false" MaxLength="10" />
+          <Property Name="ten_loai_kh" Type="nvarchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="SanPham">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="nvarchar" Nullable="false" MaxLength="10" />
+          <Property Name="ten_sp" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="gia_sp" Type="float" Nullable="false" />
+          <Property Name="hinh_anh" Type="nvarchar" MaxLength="200" />
+          <Property Name="tinh_trang" Type="int" Nullable="false" />
+          <Property Name="ghi_chu" Type="ntext" />
+          <Property Name="visible" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TinhTrangSanPham">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ten" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="ghi_chu" Type="ntext" />
+        </EntityType>
+        <EntityType Name="TrangThaiDonHang">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ten" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="ghi_chu" Type="ntext" />
+        </EntityType>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="HoneyDBModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="HoneyDBEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="BaiViets" EntityType="HoneyDBModel.BaiViet" />
+          <EntitySet Name="ChiTietKhuyenMais" EntityType="HoneyDBModel.ChiTietKhuyenMai" />
+          <EntitySet Name="DaiLies" EntityType="HoneyDBModel.DaiLy" />
+          <EntitySet Name="DonDatHangs" EntityType="HoneyDBModel.DonDatHang" />
+          <EntitySet Name="KhachHangs" EntityType="HoneyDBModel.KhachHang" />
+          <EntitySet Name="KhuyenMais" EntityType="HoneyDBModel.KhuyenMai" />
+          <EntitySet Name="LoaiKhachHangs" EntityType="HoneyDBModel.LoaiKhachHang" />
+          <EntitySet Name="SanPhams" EntityType="HoneyDBModel.SanPham" />
+          <EntitySet Name="TinhTrangSanPhams" EntityType="HoneyDBModel.TinhTrangSanPham" />
+          <EntitySet Name="TrangThaiDonHangs" EntityType="HoneyDBModel.TrangThaiDonHang" />
+        </EntityContainer>
+        <EntityType Name="BaiViet">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="tieu_de" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="noi_dung" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="thoi_gian" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="ChiTietKhuyenMai">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="id_sp" />
+            <PropertyRef Name="id_km" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="id_sp" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="id_km" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="ghi_chu" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="DaiLy">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="id_khach_hang" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="so_luong_tich_luy" Type="Int32" Nullable="false" />
+          <Property Name="ghi_chu" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="DonDatHang">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="id_kh" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="id_sp" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="so_luong_sp" Type="Int32" Nullable="false" />
+          <Property Name="thoi_gian" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="tinh_trang" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="KhachHang">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="username" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="password" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="ho_ten" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="sdt" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="email" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="dia_chi" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="loai_khach_hang" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="visible" Type="Boolean" Nullable="false" />
+          <Property Name="so_luong_tich_luy" Type="Int32" />
+        </EntityType>
+        <EntityType Name="KhuyenMai">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="thoi_gian_bat_dau" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="thoi_gian_ket_thuc" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ti_le_giam_gia" Type="Double" Nullable="false" />
+          <Property Name="ghi_chu" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="LoaiKhachHang">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="ten_loai_kh" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="SanPham">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="ten_sp" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="gia_sp" Type="Double" Nullable="false" />
+          <Property Name="hinh_anh" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="tinh_trang" Type="Int32" Nullable="false" />
+          <Property Name="ghi_chu" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="visible" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TinhTrangSanPham">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="ten" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="ghi_chu" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TrangThaiDonHang">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="ten" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="ghi_chu" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="HoneyDBModelStoreContainer" CdmEntityContainer="HoneyDBEntities">
+          <EntitySetMapping Name="BaiViets">
+            <EntityTypeMapping TypeName="HoneyDBModel.BaiViet">
+              <MappingFragment StoreEntitySet="BaiViet">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="tieu_de" ColumnName="tieu_de" />
+                <ScalarProperty Name="noi_dung" ColumnName="noi_dung" />
+                <ScalarProperty Name="thoi_gian" ColumnName="thoi_gian" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ChiTietKhuyenMais">
+            <EntityTypeMapping TypeName="HoneyDBModel.ChiTietKhuyenMai">
+              <MappingFragment StoreEntitySet="ChiTietKhuyenMai">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_sp" ColumnName="id_sp" />
+                <ScalarProperty Name="id_km" ColumnName="id_km" />
+                <ScalarProperty Name="ghi_chu" ColumnName="ghi_chu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DaiLies">
+            <EntityTypeMapping TypeName="HoneyDBModel.DaiLy">
+              <MappingFragment StoreEntitySet="DaiLy">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_khach_hang" ColumnName="id_khach_hang" />
+                <ScalarProperty Name="so_luong_tich_luy" ColumnName="so_luong_tich_luy" />
+                <ScalarProperty Name="ghi_chu" ColumnName="ghi_chu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DonDatHangs">
+            <EntityTypeMapping TypeName="HoneyDBModel.DonDatHang">
+              <MappingFragment StoreEntitySet="DonDatHang">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_kh" ColumnName="id_kh" />
+                <ScalarProperty Name="id_sp" ColumnName="id_sp" />
+                <ScalarProperty Name="so_luong_sp" ColumnName="so_luong_sp" />
+                <ScalarProperty Name="thoi_gian" ColumnName="thoi_gian" />
+                <ScalarProperty Name="tinh_trang" ColumnName="tinh_trang" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KhachHangs">
+            <EntityTypeMapping TypeName="HoneyDBModel.KhachHang">
+              <MappingFragment StoreEntitySet="KhachHang">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="ho_ten" ColumnName="ho_ten" />
+                <ScalarProperty Name="sdt" ColumnName="sdt" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="dia_chi" ColumnName="dia_chi" />
+                <ScalarProperty Name="loai_khach_hang" ColumnName="loai_khach_hang" />
+                <ScalarProperty Name="visible" ColumnName="visible" />
+                <ScalarProperty Name="so_luong_tich_luy" ColumnName="so_luong_tich_luy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KhuyenMais">
+            <EntityTypeMapping TypeName="HoneyDBModel.KhuyenMai">
+              <MappingFragment StoreEntitySet="KhuyenMai">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="thoi_gian_bat_dau" ColumnName="thoi_gian_bat_dau" />
+                <ScalarProperty Name="thoi_gian_ket_thuc" ColumnName="thoi_gian_ket_thuc" />
+                <ScalarProperty Name="ti_le_giam_gia" ColumnName="ti_le_giam_gia" />
+                <ScalarProperty Name="ghi_chu" ColumnName="ghi_chu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LoaiKhachHangs">
+            <EntityTypeMapping TypeName="HoneyDBModel.LoaiKhachHang">
+              <MappingFragment StoreEntitySet="LoaiKhachHang">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="ten_loai_kh" ColumnName="ten_loai_kh" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SanPhams">
+            <EntityTypeMapping TypeName="HoneyDBModel.SanPham">
+              <MappingFragment StoreEntitySet="SanPham">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="ten_sp" ColumnName="ten_sp" />
+                <ScalarProperty Name="gia_sp" ColumnName="gia_sp" />
+                <ScalarProperty Name="hinh_anh" ColumnName="hinh_anh" />
+                <ScalarProperty Name="tinh_trang" ColumnName="tinh_trang" />
+                <ScalarProperty Name="ghi_chu" ColumnName="ghi_chu" />
+                <ScalarProperty Name="visible" ColumnName="visible" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TinhTrangSanPhams">
+            <EntityTypeMapping TypeName="HoneyDBModel.TinhTrangSanPham">
+              <MappingFragment StoreEntitySet="TinhTrangSanPham">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="ten" ColumnName="ten" />
+                <ScalarProperty Name="ghi_chu" ColumnName="ghi_chu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TrangThaiDonHangs">
+            <EntityTypeMapping TypeName="HoneyDBModel.TrangThaiDonHang">
+              <MappingFragment StoreEntitySet="TrangThaiDonHang">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="ten" ColumnName="ten" />
+                <ScalarProperty Name="ghi_chu" ColumnName="ghi_chu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

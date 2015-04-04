@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HoneyDBModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="HoneyDBEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="BaiViets" EntityType="HoneyDBModel.BaiViet" />
+    <EntitySet Name="ChiTietKhuyenMais" EntityType="HoneyDBModel.ChiTietKhuyenMai" />
+    <EntitySet Name="DaiLies" EntityType="HoneyDBModel.DaiLy" />
+    <EntitySet Name="DonDatHangs" EntityType="HoneyDBModel.DonDatHang" />
+    <EntitySet Name="KhachHangs" EntityType="HoneyDBModel.KhachHang" />
+    <EntitySet Name="KhuyenMais" EntityType="HoneyDBModel.KhuyenMai" />
+    <EntitySet Name="LoaiKhachHangs" EntityType="HoneyDBModel.LoaiKhachHang" />
+    <EntitySet Name="SanPhams" EntityType="HoneyDBModel.SanPham" />
+    <EntitySet Name="TinhTrangSanPhams" EntityType="HoneyDBModel.TinhTrangSanPham" />
+    <EntitySet Name="TrangThaiDonHangs" EntityType="HoneyDBModel.TrangThaiDonHang" />
+  </EntityContainer>
+  <EntityType Name="BaiViet">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="tieu_de" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="noi_dung" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="thoi_gian" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="ChiTietKhuyenMai">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="id_sp" />
+      <PropertyRef Name="id_km" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="id_sp" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="false" />
+    <Property Name="id_km" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="false" />
+    <Property Name="ghi_chu" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="DaiLy">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="false" />
+    <Property Name="id_khach_hang" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="false" />
+    <Property Name="so_luong_tich_luy" Type="Int32" Nullable="false" />
+    <Property Name="ghi_chu" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="DonDatHang">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="false" />
+    <Property Name="id_kh" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="false" />
+    <Property Name="id_sp" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="false" />
+    <Property Name="so_luong_sp" Type="Int32" Nullable="false" />
+    <Property Name="thoi_gian" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="tinh_trang" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="KhachHang">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="false" />
+    <Property Name="username" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="password" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="ho_ten" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="sdt" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="email" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="dia_chi" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="loai_khach_hang" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="false" />
+    <Property Name="visible" Type="Boolean" Nullable="false" />
+    <Property Name="so_luong_tich_luy" Type="Int32" />
+  </EntityType>
+  <EntityType Name="KhuyenMai">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="false" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="thoi_gian_bat_dau" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="thoi_gian_ket_thuc" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="ti_le_giam_gia" Type="Double" Nullable="false" />
+    <Property Name="ghi_chu" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="LoaiKhachHang">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="false" />
+    <Property Name="ten_loai_kh" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="SanPham">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="false" />
+    <Property Name="ten_sp" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="gia_sp" Type="Double" Nullable="false" />
+    <Property Name="hinh_anh" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="tinh_trang" Type="Int32" Nullable="false" />
+    <Property Name="ghi_chu" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="visible" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TinhTrangSanPham">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="ten" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="ghi_chu" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="TrangThaiDonHang">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="ten" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="ghi_chu" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+  </EntityType>
+</Schema>
