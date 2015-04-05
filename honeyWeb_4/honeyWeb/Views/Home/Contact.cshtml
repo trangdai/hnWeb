@@ -36,20 +36,24 @@
 										<span class="empty-message">*This field is required.</span>
 										<span class="error-message"> *This is not a valid name.</span>
 									</label>
+									<label class="phone">
+                                        <input type="text" name="Phone" placeholder="Số điện thoại*:" data-constraints=""/>
+										<span class="empty-message">*This field is required.</span>
+										<span class="error-message">*This is not a valid phone.</span>
+									</label>
+									<label class="address">
+                                        <input type="text" name="Address" placeholder="Địa chỉ*:" data-constraints=""/>
+										<span class="empty-message">*This field is required.</span>
+										<span class="error-message">*This is not a valid address.</span>
+									</label>
 									<label class="email">
 										<!--<input type="text" placeholder="Email*:" data-constraints="aRequired aEmail">-->
                                         <input type="text" name="Email" placeholder="Email*:" data-constraints=""/>
 										<span class="empty-message">*This field is required.</span>
 										<span class="error-message">*This is not a valid email.</span>
 									</label>
-@*									<label class="phone">
-										<!--<input type="text" placeholder="Phone:" data-constraints="aRequired aJustNumbers">-->
-                                        <input type="text" name="Phone" placeholder="Số điện thoại:" data-constraints=""/>
-										<span class="empty-message">*This field is required.</span>
-										<span class="error-message">*This is not a valid phone.</span>
-									</label>*@
 									<label class="address">
-                                        <div name="ProdCate">Loại sản phẩm: @Html.DropDownList("Prods","Chọn")</div>
+                                        <div>Loại sản phẩm: @Html.DropDownList("cateId",(SelectList)ViewBag.Prods)</div>
 									</label>
 
 								</div>

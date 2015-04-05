@@ -73,23 +73,23 @@
                                 @if (i + t + i * t < @ViewBag.TotalProds)
                                 {
 					                <div class="wrapp  maxheight">
-						                <a href="#" class="img_project">
+						                <a href="/Product/Details/@ViewBag.Prods[i + t + i * t].id" class="img_project">
 							                <img alt="" src="@ViewBag.Prods[i + t + i * t].hinh_anh" class="">
 							                <span class="price_sign">@ViewBag.Prods[i + t + i * t].gia_sp VND</span>
 						                </a>
 						                <!--<h3><a href="#">i=i t=t --(i + t + i * t + 1)-- ViewBag.Prods[i + t + i * t].ten_sp</a></h3>-->
-                                        <h3><a href="#">@ViewBag.Prods[i + t + i * t].ten_sp</a></h3>
+                                        <h3><a href="/Product/Details/@ViewBag.Prods[i + t + i * t].id">@ViewBag.Prods[i + t + i * t].ten_sp</a></h3>
 						                <p style="height:36px;">@ViewBag.Prods[i + t + i * t].ghi_chu</p>
 					                </div>
                                 }
                                 @if (i + t + i * t + 1 < ViewBag.TotalProds)
                                 {
 					                <div class="wrapper marTop1">
-						                <a href="#" class="img_project">
+						                <a href="/Product/Details/@ViewBag.Prods[i + 4 * (t+1)].id" class="img_project">
 							                <img alt="" src="@ViewBag.Prods[i + 4 * (t+1)].hinh_anh" class="">
 							                <span class="price_sign"> @ViewBag.Prods[i + 4 * (t+1)].gia_sp VND</span>
 						                </a>
-                                        <h3><a href="#">@ViewBag.Prods[i + 4 * (t+1)].ten_sp</a></h3>
+                                        <h3><a href="/Product/Details/@ViewBag.Prods[i + 4 * (t+1)].id">@ViewBag.Prods[i + 4 * (t+1)].ten_sp</a></h3>
 						                <p style="height:36px;">@ViewBag.Prods[i + 4 * (t+1)].ghi_chu</p>
 					                </div>
                                 }

@@ -1,4 +1,4 @@
-﻿@model honeyWeb.Models.SanPham
+﻿  @model honeyWeb.Models.SanPham
 
 @{
     ViewBag.Title = "Details";
@@ -15,6 +15,7 @@
             <div class="right-detail grid_6">
                 <p> @Html.DisplayNameFor(model => model.ghi_chu)</p>
                 <p> @Html.DisplayNameFor(model => model.gia_sp)</p>
+                <p><a href="/Home/Contact">MUA NGAY</a></p>
                 <p>
                     @Html.ActionLink("Edit", "Edit", new { id=Model.id }) |
                     @Html.ActionLink("Back to List", "Index")

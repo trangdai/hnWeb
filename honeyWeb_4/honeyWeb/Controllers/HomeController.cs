@@ -47,7 +47,7 @@ namespace honeyWeb.Controllers
         }
 
         [HttpPost]
-        public ActionResult Contact(FormCollection collection)
+        public ActionResult Contact(string cateId, FormCollection collection)
         {
             ViewBag.Message = "Your contact page.";
             KhachHang kh = new KhachHang();//2
@@ -57,12 +57,15 @@ namespace honeyWeb.Controllers
                 kh.ho_ten = collection["Name"];
                 kh.email = collection.Get("Email");
                 kh.sdt = collection.Get("Phone");
-                don.id_sp = collection["ProdCate"];
+                kh.dia_chi = collection["Address"];
+                ViewBag.Prods = new SelectList(db.SanPhams, "id", "ten_sp");
+                don.id_sp = cateId;
                 if (collection["Quantity"] != null)
                     kh.so_luong_tich_luy = Int32.Parse(collection["Quantity"]);
                 if (kh.sdt != null)
                 {
-                    kh.id = kh.sdt.Substring(1);
+                    //kh.id = kh.sdt.Substring(1);
+                    kh.id = kh.sdt;
                     kh.username = kh.id;
                     kh.password = kh.id;
                     kh.loai_khach_hang = "bt";
