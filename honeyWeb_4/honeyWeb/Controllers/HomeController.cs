@@ -45,7 +45,7 @@ namespace honeyWeb.Controllers
             ViewBag.TotalProds = prods.Count();
             return View();
         }
-
+/*
         [HttpPost]
         public ActionResult Contact(string cateId, FormCollection collection)
         {
@@ -87,5 +87,99 @@ namespace honeyWeb.Controllers
             } 
             return View();
         }
+*/
+
+        [HttpPost]
+        public ActionResult Contact(string cateId, FormCollection collection)
+        {
+            ViewBag.Message = "Your contact page.";
+            KhachHang kh = new KhachHang();//2
+            DonDatHang don = new DonDatHang();
+            IEnumerable<SanPham> sp = (IEnumerable<SanPham>)db.SanPhams;
+            ViewBag.Prods = new SelectList(sp, "id", "ten_sp");
+            try
+            {
+				//get data
+				String hoten = collection["Name"];
+				String email = collection.Get("Email");
+				String sdt = collection.Get("Phone");
+				String diachi = collection["Address"];
+				String soluong = collection["Quantity"];
+				
+				//if customer first buy
+				if(checkVisibleKhachHang(sdt) == null){
+				//register n save info
+                    kh.id = sdt;
+                    kh.username = kh.id;
+                    kh.password = kh.id;
+                    kh.loai_khach_hang = "bt";
+                    kh.visible = true;
+					kh.ho_ten = collection["Name"];
+					kh.email = collection.Get("Email");
+					kh.sdt = collection.Get("Phone");
+					kh.dia_chi = collection["Address"];	
+					kh.so_luong_tich_luy = 0;
+					db.KhachHangs.Add(kh);
+				}
+                
+				//save the bill
+                DateTime time = DateTime.Now;
+                String t = time.ToString();
+                don.id = sdt + time.ToString();
+				don.id_kh = sdt;
+				don.id_sp = cateId;
+				don.so_luong_sp = Int32.Parse(soluong);
+                don.thoi_gian = time;
+                plusMarkToKhachHang(sdt, Int32.Parse(soluong));
+				db.DonDatHangs.Add(don);
+				
+				db.SaveChanges();
+
+            }
+            catch (DbEntityValidationException dbEx)
+            {
+                foreach (var validationErrors in dbEx.EntityValidationErrors)
+                {
+                    foreach (var validationError in validationErrors.ValidationErrors)
+                    {
+                        Trace.TraceInformation("Property: {0} Error: {1}", validationError.PropertyName, validationError.ErrorMessage);
+                    }
+                }
+            }
+           // return View(don);
+            return RedirectToAction("Home/PaymentOK");
+        }
+		
+		public KhachHang checkVisibleKhachHang(String id)
+		{
+			KhachHang kh = new KhachHang();
+            kh = db.KhachHangs.Find(id);
+			if(kh != null)// || kh != undefined)
+            {
+				return kh;
+			}
+            return null;
+		}
+		
+		public void plusMarkToKhachHang(String id, int mark)
+		{
+			KhachHang kh = db.KhachHangs.Find(id);
+			if(kh != null)// || kh != undefined)
+            {
+				kh.so_luong_tich_luy = kh.so_luong_tich_luy + mark;
+			}
+		}
+
+		// int temp;
+		// int.tryparse(yourstring, out temp);
+		// if (temp == 0) return false
+		// else return true;
+
+        public ActionResult PaymentOK()
+        {
+            
+            return View();
+        }
+
     }
 }
