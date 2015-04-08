@@ -147,7 +147,7 @@ namespace honeyWeb.Controllers
                 }
             }
            // return View(don);
-            return RedirectToAction("Home/PaymentOK");
+            return RedirectToAction("PaymentOK");
         }
 		
 		public KhachHang checkVisibleKhachHang(String id)
