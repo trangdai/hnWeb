@@ -19,6 +19,8 @@ namespace honeyWeb.Models
         public double gia_sp { get; set; }
         public string hinh_anh { get; set; }
         public int tinh_trang { get; set; }
+        public string mo_ta_ngan { get; set; }
+        public string mo_ta_chi_tiet { get; set; }
         public string ghi_chu { get; set; }
         public bool visible { get; set; }
     }

@@ -1,5 +1,4 @@
 /*css*/
-/*
 @import "../css/reset.css";
 @import "../css/skeleton.css";
 @import "../css/superfish.css";
@@ -8,7 +7,6 @@
 @import "../css/form.css";
 @import "../css/subscribe-form.css";
 @import "../css/owl.carousel.css";
-*/
 
 @import url(//fonts.googleapis.com/css?family=Comfortaa:400,700);
 /*Pacifico*/
@@ -102,11 +100,7 @@ a[href^="tel:"] {
 .color1{color: #fff;}
 
 
-/***/
-.account_area {
-    float:right;
-    margin:10px 5px;
-}
+
 
 
 /* Global properties ======================================================== */
@@ -197,7 +191,7 @@ h2.v4{padding-bottom: 17px;}
 	min-height: 63px;
 }
 h3{
-	font:22px/26px 'Comfortaa', Arial, sans-serif;
+	font:20px/26px 'Comfortaa', Arial, sans-serif;
 	color:#000; 
 	margin-top: 14px;
 	letter-spacing: 0px;
@@ -285,7 +279,7 @@ blockquote p{
 	margin-right: 3px;
 	font:40px/40px 'Pacifico', Arial, sans-serif;
 	color:#fff;
-	margin-top: -9px;
+	/*margin-top: -9px;*/
 	width: 40px;
 	text-align: center;
 }
@@ -397,15 +391,16 @@ a.link2:hover{color: #000;}
 .img_project .price_sign{
 	position: absolute;
 	top: 0;
-	right: 7px;
+	right: 0px;
 	display: block;
 	text-align: center;
 	background: url(../images/price_bg.png) 0 0px no-repeat;
-    background-size:122px 41px;
-	width: 122px;
-	height: 41px;
+	width: auto;
+	padding: 5px;
+	height: 35px;
 	color: #fff;
-	font: bold 18px/37px "Comfortaa", Arial, Helvetica, sans-serif;
+	font: bold 16px/37px "Comfortaa", Arial, Helvetica, sans-serif;
+	
 }
 
 
@@ -556,7 +551,7 @@ header{
 /* ============================= end lists ====================== */
 
 
-.more_btn, .more_btn2, input[type=submit]{
+.more_btn, .more_btn2{
 	position: relative;
 	display: block;
 	color:#fff;
@@ -569,14 +564,14 @@ header{
 	background: #7c7c7c;
 	text-transform: uppercase;
 }
-.more_btn2, input[type=submit]{
+.more_btn2{
 	width: auto !important;
 	padding: 0 28px;
 	margin-top: 27px;
 	display: inline-block;
 }
 
-.more_btn:hover, .more_btn .active a, .more_btn2:hover, input[type=submit]:hover{
+.more_btn:hover, .more_btn .active a, .more_btn2:hover{
 	color:#fff;
 	background: #000;
 }
