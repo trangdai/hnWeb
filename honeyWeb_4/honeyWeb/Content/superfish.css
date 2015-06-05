@@ -58,7 +58,7 @@ ul.sf-menu>li>a strong{
 }
 
 ul.sf-menu>li.current , ul.sf-menu>li.sfHover , ul.sf-menu>li:hover {}
-ul.sf-menu>li.current>a, ul.sf-menu>li.sfHover>a, ul.sf-menu>li>a:hover{
+ul.sf-menu>li.current>a, ul.sf-menu>li.sfHover>a, ul.sf-menu>li>a:hover,ul.sf-menu>li>a:active{
 	color:#f7bc00; 
 	/*background: #f97e76;*/
 }

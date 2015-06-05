@@ -14,6 +14,7 @@ namespace honeyWeb.Controllers
     public class HomeController : Controller
     {
         private HoneyDBEntities db = new HoneyDBEntities();
+        private int TOTAL_ARTICLE_PER_PAGE = 7;
 
         public ActionResult Index()
         {
@@ -32,6 +33,19 @@ namespace honeyWeb.Controllers
             articles = db.BaiViets.ToList();
             ViewBag.articles = articles;
             ViewBag.totalArticle = articles.Count();
+            ViewBag.totalPage = articles.Count() / TOTAL_ARTICLE_PER_PAGE;
+            return View();
+        }
+
+        //*/About/1
+        public ActionResult AboutPage(int page)
+        {
+            ViewBag.Message = "Your app description page.";
+            List<BaiViet> articles = new List<BaiViet>();
+            articles = db.BaiViets.ToList();
+            ViewBag.articles = articles;
+            ViewBag.totalArticle = articles.Count();
+            ViewBag.totalPage = articles.Count() / TOTAL_ARTICLE_PER_PAGE;
             return View();
         }
 

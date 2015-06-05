@@ -7,18 +7,22 @@
 <div class="container_12">
 	<div class="grid_12">
 		<div class="wrapper">
-
-            <h2>Details</h2>
-
-            <h2>tên @Html.DisplayNameFor(model => model.ten_sp)</h2>
+            <div class="title-detail">@Html.DisplayFor(model => model.ten_sp)</div>
             <div class="left-detail grid_5"><img src="@Html.DisplayFor(model => model.hinh_anh)" /></div>
             <div class="right-detail grid_6">
-                <p> @Html.DisplayNameFor(model => model.ghi_chu)</p>
-                <p> @Html.DisplayNameFor(model => model.gia_sp)</p>
-                <p><a href="/Home/Contact">MUA NGAY</a></p>
+                <p> @Html.DisplayFor(model => model.ghi_chu)</p>
+                <p> Tình trạng: 
+                @if(@Html.ValueFor(model => model.tinh_trang).ToString() == "1"){
+					<span>Còn hàng</span>
+                    }else{
+                        if (@Html.ValueFor(model => model.tinh_trang).ToString() == "3")
+                        {
+                            <span>Hết hàng</span>
+                        }
+                    }
                 <p>
-                    @Html.ActionLink("Edit", "Edit", new { id=Model.id }) |
-                    @Html.ActionLink("Back to List", "Index")
+                    @*Html.ActionLink("Edit", "Edit", new { id=Model.id }) |*@
+                    <div class="btn-txt"><span>@Html.ActionLink("TRANG CHỦ", "Index")</span>|<span><a href="/Home/Contact">MUA NGAY</a></span></div>
                 </p>
             </div>
         </div>

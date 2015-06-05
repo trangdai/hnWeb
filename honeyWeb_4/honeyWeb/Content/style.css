@@ -7,10 +7,11 @@
 @import "../css/form.css";
 @import "../css/subscribe-form.css";
 @import "../css/owl.carousel.css";
-
+/*
 @import url(//fonts.googleapis.com/css?family=Comfortaa:400,700);
-/*Pacifico*/
+/*Pacifico
 @import url(//fonts.googleapis.com/css?family=Pacifico);
+*/
 
 html, body {}
 
@@ -702,7 +703,9 @@ footer a:hover{color:#f7bc00;}
 	padding-bottom: 20px;
 }
 
-
+.paging {
+    text-align:center;
+}
 
 .vline{position: relative;}
 .vline:before {
@@ -757,7 +760,32 @@ footer a:hover{color:#f7bc00;}
 .col-4{width: 13%; text-align: center !important;}
 
 /*----------- end table ---------------*/
+.title-detail {
+    color:blue;
+    font-weight:bold;
+    font-size:30px;
+    margin: 20px 0;
+}
+.right-detail {
+    color:black;
+}
+.btn-txt {
+    font-weight:bold;
+    font-size:20px;
+    
+}
+.btn-txt span{
+    color:red;
+    text-decoration:underline;
+    padding: 0 20px;
+}
 
+.item-img {
+    margin: 10px 0;
+}
+.wrapper input {
+    width:350px;
+}
 /*==================================RESPONSIVE LAYOUTS===============================================*/
 @media only screen and (max-width: 1039px) {
 
