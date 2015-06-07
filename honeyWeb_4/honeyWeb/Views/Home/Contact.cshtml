@@ -22,8 +22,8 @@
 					</div>
                     -->
 					<h2 class="v2">Đặt hàng - Liên hệ</h2>
-                    <div class="address" style="width:100%">
-					<form id="contact-form" method="post">
+                    <!--<div class="address" style="width:100%">-->
+					<form id="contact-form" method="post" onsubmit="return validateForm()" name="Form">
                         @using (@Ajax.BeginForm("Contact", "Home", new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "ketquaContact" }, new { id = "IdformContact" }))
                         {
                             @Html.ValidationSummary(true)
@@ -36,7 +36,7 @@
 										<span class="empty-message">*This field is required.</span>
 										<span class="error-message"> *This is not a valid name.</span>
 									</label>
-									<label class="phone">
+									<label class="address">
                                         <input type="number" class="requiredNumber" name="Phone" placeholder="Số điện thoại*:" data-constraints=""/>
 										<span class="empty-message">*This field is required.</span>
 										<span class="error-message">*This is not a valid phone.</span>
@@ -46,16 +46,16 @@
 										<span class="empty-message">*This field is required.</span>
 										<span class="error-message">*This is not a valid address.</span>
 									</label>
-									<label class="email">
+									<label class="name">
 										<!--<input type="text" placeholder="Email*:" data-constraints="aRequired aEmail">-->
-                                        <input type="text" name="Email" placeholder="Email*:" data-constraints=""/>
+                                        <input type="text" name="Email" placeholder="Email:" data-constraints=""/>
 										<span class="empty-message">*This field is required.</span>
 										<span class="error-message">*This is not a valid email.</span>
 									</label>
-									<label class="address">
+									<label class="">
                                         <div>Loại sản phẩm: @Html.DropDownList("cateId",(SelectList)ViewBag.Prods)</div>
 									</label>
-									<label class="phone">
+									<label class="name">
                                         <input type="number" class="requiredNumber" name="Quantity" placeholder="Số lượng:" data-constraints=""/>
 										<span class="empty-message">*This field is required.</span>
 										<span class="error-message">*This is not a valid phone.</span>
@@ -70,12 +70,13 @@
 
 								<div class="form_btns" style="width:80%">
 									<a href="#" data-type="reset" class="more_btn2">Clear</a> 
-									<a href="#"><input type="submit" value="Submit"/></a>
+									<a href="#" data-type="submit" class="more_btn2">Submit</a>
+                                    <a><input type="submit" value="Submit"/></a>
 								</div>  
 						}
                        </form>
-                    </div>
-					<div class="grid_4 alpha">
+                    <!--</div>-->
+					<div class="grid_9 alpha">
 						<address>
 							<dl>
 									<dt>Mật ong miệt vườn</dt>
@@ -86,29 +87,17 @@
 							</dl>
 						</address>
 					</div>
-                    <!--
-					<div class="grid_4 omega">
-						<address>
-							<dl>
-									<dt>9863 - 9867 Mill Road,<br>Cambridge, MG09 99HT</dt>
-									<dd><span>Freephone:</span>+1 800 559 6580</dd>
-									<dd><span>Telephone:</span>+1 800 603 6035</dd>
-									<dd><span>FAX:</span>+1 800 889 9898 </dd>
-									<dd>E-mail: <a href="#" class="link2">mail@demolink.org</a></dd>
-							</dl>
-						</address>
-					</div>
-                    -->
 				</div>
 
 				<div class="grid_3 omega">
                     <div class="grid_4 item-img"><img src="http://c2.staticflickr.com/8/7681/17207780618_fc18fa5b1c.jpg" /></div>
                     <div class="grid_4 item-img" style="margin-left:20px"><img src="http://c1.staticflickr.com/9/8892/17207785018_fd40dffeb5.jpg" /></div>
 				</div>
+            </div>
 			</div>
 			<div class="indent1"></div>
 		</div>
-	</div>
+	
 
 	<!--- scripts -->
 	<script>
@@ -121,7 +110,23 @@
 				$(".error-message").show().fadeOut("slow");
 					   return false;
 			}
-		   });
-		});	
+		  });
+
+		});
+
+		function validateForm() {
+		    //alert("validateForm");
+		    var a = document.forms["Form"]["Name"].value;
+		    var b = document.forms["Form"]["Phone"].value;
+		    var c = document.forms["Form"]["Address"].value;
+		    var d = document.forms["Form"]["Quantity"].value;
+		    //alert("aaaaaaaaaaa-------"+a);
+		    if (a == "" || a== undefined || b == "" || b== undefined ||c == "" || c== undefined ||d == "" || d== undefined) {
+		        alert("Vui lòng điền đầy đủ thông tin!");
+		        return false;
+		    }
+		}
+
+		
 	</script>
 </section>
