@@ -119,11 +119,16 @@ namespace honeyWeb.Controllers
 				String sdt = collection.Get("Phone");
 				String diachi = collection["Address"];
 				String soluong = collection["Quantity"];
-				
+
+                if (hoten == "" || hoten == null || email == "" || email == null ||
+                    sdt == "" || sdt == null || diachi == "" || diachi == null || soluong == "" || soluong == null)
+                {
+                    return RedirectToAction("ErrorFilling");
+                }
 				//if customer first buy
 				if(checkVisibleKhachHang(sdt) == null){
 				//register n save info
-                    kh.id = sdt;
+                    kh.id = sdt.Substring(2);//id 10 chu so
                     kh.username = kh.id;
                     kh.password = kh.id;
                     kh.loai_khach_hang = "bt";
@@ -139,7 +144,12 @@ namespace honeyWeb.Controllers
 				//save the bill
                 DateTime time = DateTime.Now;
                 String t = time.ToString();
-                don.id = sdt + time.ToString();
+                String[] words = t.Split(' ','/');
+                String result = "";
+                for(var i=0;i<words.Length;i++){
+                    result += words[i];
+                }
+                don.id = sdt +result;
 				don.id_kh = sdt;
 				don.id_sp = cateId;
 				don.so_luong_sp = Int32.Parse(soluong);
@@ -192,6 +202,11 @@ namespace honeyWeb.Controllers
         public ActionResult PaymentOK()
         {
             
+            return View();
+        }
+
+        public ActionResult ErrorFilling()
+        {
             return View();
         }
 
