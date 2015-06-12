@@ -240,11 +240,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\animation-slider.css" />
     <Content Include="Content\camera.css" />
     <Content Include="Content\form.css" />
     <Content Include="Content\owl.css" />
+    <Content Include="Content\reset-slider.css" />
     <Content Include="Content\reset.css" />
     <Content Include="Content\skeleton.css" />
+    <Content Include="Content\style-slider.css" />
     <Content Include="Content\style.css" />
     <Content Include="Content\subscribe-form.css" />
     <Content Include="Content\superfish.css" />
@@ -470,6 +473,7 @@
     <Content Include="Views\Admin\CustomerListView.cshtml" />
     <Content Include="Views\Product\Index0.cshtml" />
     <Content Include="Views\Home\PaymentOK.cshtml" />
+    <Content Include="Views\Home\ErrorFilling.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
