@@ -12,13 +12,14 @@ namespace honeyWeb.Controllers
     public class ProductController : Controller
     {
         private HoneyDBEntities db = new HoneyDBEntities();
-
+        
         //
         // GET: /Product/
 
         public ActionResult Index()
         {
             List<SanPham> prods = new List<SanPham>();
+            
             prods = db.SanPhams.ToList();
             ViewBag.Prods = prods;
             ViewBag.TotalProds = prods.Count;

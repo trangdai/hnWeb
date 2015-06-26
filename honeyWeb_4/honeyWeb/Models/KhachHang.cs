@@ -22,8 +22,8 @@ namespace honeyWeb.Models
         public string email { get; set; }
         public string dia_chi { get; set; }
         public string loai_khach_hang { get; set; }
-        public string ghi_chu { get; set; }
         public bool visible { get; set; }
         public Nullable<int> so_luong_tich_luy { get; set; }
+        public string ghi_chu { get; set; }
     }
 }

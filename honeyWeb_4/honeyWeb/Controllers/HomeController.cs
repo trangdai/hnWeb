@@ -55,7 +55,7 @@ namespace honeyWeb.Controllers
             List<SanPham> prods = new List<SanPham>();
             prods = db.SanPhams.ToList();
             IEnumerable<SanPham> sp = (IEnumerable<SanPham>)prods;
-            ViewBag.Prods = new SelectList(sp, "id", "ten_sp");
+            ViewBag.Prods = new SelectList(sp, "id", "ghi_chu");
             ViewBag.TotalProds = prods.Count();
             return View();
         }
@@ -110,7 +110,8 @@ namespace honeyWeb.Controllers
             KhachHang kh = new KhachHang();//2
             DonDatHang don = new DonDatHang();
             IEnumerable<SanPham> sp = (IEnumerable<SanPham>)db.SanPhams;
-            ViewBag.Prods = new SelectList(sp, "id", "ten_sp");
+            //ViewBag.Prods = new SelectList(sp, "id", "ten_sp");
+            ViewBag.Prods = new SelectList(sp, "id", "ghi_chu");
             try
             {
 				//get data
@@ -144,7 +145,7 @@ namespace honeyWeb.Controllers
 				//save the bill
                 DateTime time = DateTime.Now;
                 String t = time.ToString();
-                String[] words = t.Split(' ','/');
+                String[] words = t.Split(' ','/',':');
                 String result = "";
                 for(var i=0;i<words.Length;i++){
                     result += words[i];

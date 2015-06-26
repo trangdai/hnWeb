@@ -698,7 +698,7 @@ footer a:hover{color:#f7bc00;}
 .box-2{
 	width: 100%;
 	background: url(../images/bg_pattern_2.png);
-	margin-top: 67px;
+	/*margin-top: 67px;*/
 	padding-top: 9px;
 	padding-bottom: 20px;
 }
