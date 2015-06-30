@@ -12,7 +12,7 @@
         <EntityTypeShape EntityType="HoneyDBModel.KhachHang" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="HoneyDBModel.KhuyenMai" Width="1.5" PointX="4.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="HoneyDBModel.LoaiKhachHang" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="HoneyDBModel.SanPham" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HoneyDBModel.SanPham" Width="1.5" PointX="0.875" PointY="6.375" IsExpanded="true" />
         <EntityTypeShape EntityType="HoneyDBModel.TinhTrangSanPham" Width="1.5" PointX="6.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="HoneyDBModel.TrangThaiDonHang" Width="1.5" PointX="6.75" PointY="6.75" IsExpanded="true" />
       </Diagram>

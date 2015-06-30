@@ -12,6 +12,9 @@ namespace honeyWeb.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Objects;
+    using System.Data.Objects.DataClasses;
+    using System.Linq;
     
     public partial class HoneyDBEntities : DbContext
     {
@@ -35,5 +38,33 @@ namespace honeyWeb.Models
         public DbSet<SanPham> SanPhams { get; set; }
         public DbSet<TinhTrangSanPham> TinhTrangSanPhams { get; set; }
         public DbSet<TrangThaiDonHang> TrangThaiDonHangs { get; set; }
+    
+        public virtual ObjectResult<GetAllArticles_Result> GetAllArticles()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAllArticles_Result>("GetAllArticles");
+        }
+    
+        public virtual ObjectResult<GetAllProds_Result> GetAllProds()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAllProds_Result>("GetAllProds");
+        }
+    
+        public virtual ObjectResult<GetDetailProdById_Result> GetDetailProdById(string prodID)
+        {
+            var prodIDParameter = prodID != null ?
+                new ObjectParameter("prodID", prodID) :
+                new ObjectParameter("prodID", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetDetailProdById_Result>("GetDetailProdById", prodIDParameter);
+        }
+    
+        public virtual ObjectResult<GetDetailProdByName_Result> GetDetailProdByName(string prodName)
+        {
+            var prodNameParameter = prodName != null ?
+                new ObjectParameter("prodName", prodName) :
+                new ObjectParameter("prodName", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetDetailProdByName_Result>("GetDetailProdByName", prodNameParameter);
+        }
     }
 }
