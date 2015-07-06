@@ -66,5 +66,33 @@ namespace honeyWeb.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetDetailProdByName_Result>("GetDetailProdByName", prodNameParameter);
         }
+    
+        public virtual ObjectResult<GetAllArticles1_Result> GetAllArticles1()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAllArticles1_Result>("GetAllArticles1");
+        }
+    
+        public virtual ObjectResult<GetAllProds1_Result> GetAllProds1()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAllProds1_Result>("GetAllProds1");
+        }
+    
+        public virtual ObjectResult<GetDetailProdById1_Result> GetDetailProdById1(string prodID)
+        {
+            var prodIDParameter = prodID != null ?
+                new ObjectParameter("prodID", prodID) :
+                new ObjectParameter("prodID", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetDetailProdById1_Result>("GetDetailProdById1", prodIDParameter);
+        }
+    
+        public virtual ObjectResult<GetDetailProdByName1_Result> GetDetailProdByName1(string prodName)
+        {
+            var prodNameParameter = prodName != null ?
+                new ObjectParameter("prodName", prodName) :
+                new ObjectParameter("prodName", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetDetailProdByName1_Result>("GetDetailProdByName1", prodNameParameter);
+        }
     }
 }

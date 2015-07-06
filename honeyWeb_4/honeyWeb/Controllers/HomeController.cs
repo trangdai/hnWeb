@@ -4,10 +4,12 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using honeyWeb.Models;
+//using honeyWeb.Models.DataAccessSql;
 using System.Data;
 using System.Data.Entity;
 using System.Diagnostics;
 using System.Data.Entity.Validation;
+using System.Data.SqlClient;
 
 namespace honeyWeb.Controllers
 {
@@ -15,14 +17,17 @@ namespace honeyWeb.Controllers
     {
         private HoneyDBEntities db = new HoneyDBEntities();
         private int TOTAL_ARTICLE_PER_PAGE = 7;
+        private List<SanPham> prods = new List<SanPham>();
 
         public ActionResult Index()
         {
             ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
-            List<SanPham> prods = new List<SanPham>();
+            
             try
             {
-                prods = db.SanPhams.ToList();
+                prods = getAllProds();
+                //prods = db.SanPhams.ToList();
+                //DataAccessSql.AddParameter("",db,size,);
                 ViewBag.Prods = prods;
                 ViewBag.TotalProds = prods.Count();
             }
@@ -43,7 +48,7 @@ namespace honeyWeb.Controllers
         {
             ViewBag.Message = "Your app description page.";
             List<BaiViet> articles = new List<BaiViet>();
-            articles = db.BaiViets.ToList();
+            articles = getAllArticles();
             ViewBag.articles = articles;
             ViewBag.totalArticle = articles.Count();
             ViewBag.totalPage = articles.Count() / TOTAL_ARTICLE_PER_PAGE;
@@ -55,7 +60,8 @@ namespace honeyWeb.Controllers
         {
             ViewBag.Message = "Your app description page.";
             List<BaiViet> articles = new List<BaiViet>();
-            articles = db.BaiViets.ToList();
+            articles = getAllArticles();
+            //articles = db.BaiViets.ToList();
             ViewBag.articles = articles;
             ViewBag.totalArticle = articles.Count();
             ViewBag.totalPage = articles.Count() / TOTAL_ARTICLE_PER_PAGE;
@@ -65,8 +71,7 @@ namespace honeyWeb.Controllers
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
-            List<SanPham> prods = new List<SanPham>();
-            prods = db.SanPhams.ToList();
+            prods = getAllProds();
             IEnumerable<SanPham> sp = (IEnumerable<SanPham>)prods;
             ViewBag.Prods = new SelectList(sp, "id", "ghi_chu");
             ViewBag.TotalProds = prods.Count();
@@ -134,11 +139,12 @@ namespace honeyWeb.Controllers
 				String diachi = collection["Address"];
 				String soluong = collection["Quantity"];
 
-                if (hoten == "" || hoten == null || email == "" || email == null ||
-                    sdt == "" || sdt == null || diachi == "" || diachi == null || soluong == "" || soluong == null)
-                {
-                    return RedirectToAction("ErrorFilling");
-                }
+                //if (hoten == "" || hoten == null || email == "" || email == null ||
+                //    sdt == "" || sdt == null || diachi == "" || diachi == null || soluong == "" || soluong == null)
+                //{
+                //    return RedirectToAction("ErrorFilling");
+                //}
+
 				//if customer first buy
 				if(checkVisibleKhachHang(sdt) == null){
 				//register n save info
@@ -188,6 +194,7 @@ namespace honeyWeb.Controllers
             return RedirectToAction("PaymentOK");
         }
 		
+
 		public KhachHang checkVisibleKhachHang(String id)
 		{
 			KhachHang kh = new KhachHang();
@@ -224,5 +231,24 @@ namespace honeyWeb.Controllers
             return View();
         }
 
+        public List<SanPham> getAllProds()
+        {
+            DataSet ds;
+            SqlParameter[] para = { };
+            ds = DataAccessSql.RunStore("GetAllProds", para);
+
+            prods = DataAccessSql.convertToListSP(ds.Tables[0]);
+            return prods;
+        }
+
+        public List<BaiViet> getAllArticles()
+        {
+            List<BaiViet> articles = new List<BaiViet>();
+            DataSet ds;
+            SqlParameter[] para = { };
+            ds = DataAccessSql.RunStore("GetAllArticles", para);
+            articles = DataAccessSql.convertToListBV(ds.Tables[0]);
+            return articles;
+        }
     }
 }

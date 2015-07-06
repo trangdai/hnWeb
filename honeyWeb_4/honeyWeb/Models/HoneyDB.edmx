@@ -32,6 +32,7 @@
           <Property Name="tieu_de" Type="nvarchar" Nullable="false" MaxLength="100" />
           <Property Name="noi_dung" Type="ntext" Nullable="false" />
           <Property Name="thoi_gian" Type="datetime" Nullable="false" />
+          <Property Name="ghi_chu" Type="ntext" />
         </EntityType>
         <!--Errors Found During Generation:
       warning 6002: The table/view 'momvdb.dbo.ChiTietKhuyenMai' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
@@ -132,6 +133,14 @@
           <Property Name="ten" Type="nvarchar" Nullable="false" MaxLength="100" />
           <Property Name="ghi_chu" Type="ntext" />
         </EntityType>
+        <Function Name="GetAllArticles" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetAllProds" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetDetailProdById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="prodID" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="GetDetailProdByName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="prodName" Type="nvarchar" Mode="In" />
+        </Function>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -155,6 +164,14 @@
           <FunctionImport Name="GetDetailProdByName" ReturnType="Collection(HoneyDBModel.GetDetailProdByName_Result)">
           <Parameter Name="prodName" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="GetAllArticles1" ReturnType="Collection(HoneyDBModel.GetAllArticles1_Result)" />
+          <FunctionImport Name="GetAllProds1" ReturnType="Collection(HoneyDBModel.GetAllProds1_Result)" />
+          <FunctionImport Name="GetDetailProdById1" ReturnType="Collection(HoneyDBModel.GetDetailProdById1_Result)">
+          <Parameter Name="prodID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetDetailProdByName1" ReturnType="Collection(HoneyDBModel.GetDetailProdByName1_Result)">
+          <Parameter Name="prodName" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="BaiViet">
           <Key>
@@ -164,6 +181,7 @@
           <Property Name="tieu_de" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
           <Property Name="noi_dung" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="thoi_gian" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Type="String" Name="ghi_chu" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="ChiTietKhuyenMai">
           <Key>
@@ -300,6 +318,45 @@
           <Property Type="String" Name="ghi_chu" Nullable="true" MaxLength="Max" />
           <Property Type="Boolean" Name="visible" Nullable="false" />
         </ComplexType>
+        <ComplexType Name="GetAllArticles1_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="tieu_de" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="noi_dung" Nullable="false" MaxLength="Max" />
+          <Property Type="DateTime" Name="thoi_gian" Nullable="false" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="GetAllProds1_Result">
+          <Property Type="String" Name="id" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="ten_sp" Nullable="false" MaxLength="100" />
+          <Property Type="Double" Name="gia_sp" Nullable="false" />
+          <Property Type="String" Name="hinh_anh" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="tinh_trang" Nullable="false" />
+          <Property Type="String" Name="ghi_chu" Nullable="true" MaxLength="Max" />
+          <Property Type="Boolean" Name="visible" Nullable="false" />
+          <Property Type="String" Name="mo_ta_ngan" Nullable="true" MaxLength="1000" />
+          <Property Type="String" Name="mo_ta_chi_tiet" Nullable="true" MaxLength="Max" />
+        </ComplexType>
+        <ComplexType Name="GetDetailProdById1_Result">
+          <Property Type="String" Name="id" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="ten_sp" Nullable="false" MaxLength="100" />
+          <Property Type="Double" Name="gia_sp" Nullable="false" />
+          <Property Type="String" Name="hinh_anh" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="tinh_trang" Nullable="false" />
+          <Property Type="String" Name="ghi_chu" Nullable="true" MaxLength="Max" />
+          <Property Type="Boolean" Name="visible" Nullable="false" />
+          <Property Type="String" Name="mo_ta_ngan" Nullable="true" MaxLength="1000" />
+          <Property Type="String" Name="mo_ta_chi_tiet" Nullable="true" MaxLength="Max" />
+        </ComplexType>
+        <ComplexType Name="GetDetailProdByName1_Result">
+          <Property Type="String" Name="id" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="ten_sp" Nullable="false" MaxLength="100" />
+          <Property Type="Double" Name="gia_sp" Nullable="false" />
+          <Property Type="String" Name="hinh_anh" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="tinh_trang" Nullable="false" />
+          <Property Type="String" Name="ghi_chu" Nullable="true" MaxLength="Max" />
+          <Property Type="Boolean" Name="visible" Nullable="false" />
+          <Property Type="String" Name="mo_ta_ngan" Nullable="true" MaxLength="1000" />
+          <Property Type="String" Name="mo_ta_chi_tiet" Nullable="true" MaxLength="Max" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -309,6 +366,7 @@
           <EntitySetMapping Name="BaiViets">
             <EntityTypeMapping TypeName="HoneyDBModel.BaiViet">
               <MappingFragment StoreEntitySet="BaiViet">
+                <ScalarProperty Name="ghi_chu" ColumnName="ghi_chu" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="tieu_de" ColumnName="tieu_de" />
                 <ScalarProperty Name="noi_dung" ColumnName="noi_dung" />
@@ -419,6 +477,61 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetAllArticles1" FunctionName="HoneyDBModel.Store.GetAllArticles">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="HoneyDBModel.GetAllArticles1_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="tieu_de" ColumnName="tieu_de" />
+                <ScalarProperty Name="noi_dung" ColumnName="noi_dung" />
+                <ScalarProperty Name="thoi_gian" ColumnName="thoi_gian" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetAllProds1" FunctionName="HoneyDBModel.Store.GetAllProds">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="HoneyDBModel.GetAllProds1_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="ten_sp" ColumnName="ten_sp" />
+                <ScalarProperty Name="gia_sp" ColumnName="gia_sp" />
+                <ScalarProperty Name="hinh_anh" ColumnName="hinh_anh" />
+                <ScalarProperty Name="tinh_trang" ColumnName="tinh_trang" />
+                <ScalarProperty Name="ghi_chu" ColumnName="ghi_chu" />
+                <ScalarProperty Name="visible" ColumnName="visible" />
+                <ScalarProperty Name="mo_ta_ngan" ColumnName="mo_ta_ngan" />
+                <ScalarProperty Name="mo_ta_chi_tiet" ColumnName="mo_ta_chi_tiet" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetDetailProdById1" FunctionName="HoneyDBModel.Store.GetDetailProdById">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="HoneyDBModel.GetDetailProdById1_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="ten_sp" ColumnName="ten_sp" />
+                <ScalarProperty Name="gia_sp" ColumnName="gia_sp" />
+                <ScalarProperty Name="hinh_anh" ColumnName="hinh_anh" />
+                <ScalarProperty Name="tinh_trang" ColumnName="tinh_trang" />
+                <ScalarProperty Name="ghi_chu" ColumnName="ghi_chu" />
+                <ScalarProperty Name="visible" ColumnName="visible" />
+                <ScalarProperty Name="mo_ta_ngan" ColumnName="mo_ta_ngan" />
+                <ScalarProperty Name="mo_ta_chi_tiet" ColumnName="mo_ta_chi_tiet" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetDetailProdByName1" FunctionName="HoneyDBModel.Store.GetDetailProdByName">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="HoneyDBModel.GetDetailProdByName1_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="ten_sp" ColumnName="ten_sp" />
+                <ScalarProperty Name="gia_sp" ColumnName="gia_sp" />
+                <ScalarProperty Name="hinh_anh" ColumnName="hinh_anh" />
+                <ScalarProperty Name="tinh_trang" ColumnName="tinh_trang" />
+                <ScalarProperty Name="ghi_chu" ColumnName="ghi_chu" />
+                <ScalarProperty Name="visible" ColumnName="visible" />
+                <ScalarProperty Name="mo_ta_ngan" ColumnName="mo_ta_ngan" />
+                <ScalarProperty Name="mo_ta_chi_tiet" ColumnName="mo_ta_chi_tiet" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

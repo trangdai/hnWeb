@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -12,17 +13,27 @@ namespace honeyWeb.Controllers
     public class ProductController : Controller
     {
         private HoneyDBEntities db = new HoneyDBEntities();
-        
+        private DataSet ds;
+        private List<SanPham> prods = new List<SanPham>();
         //
         // GET: /Product/
 
         public ActionResult Index()
         {
-            List<SanPham> prods = new List<SanPham>();
-            
-            prods = db.SanPhams.ToList();
-            ViewBag.Prods = prods;
-            ViewBag.TotalProds = prods.Count;
+            SqlParameter[] para = { };
+            ds = DataAccessSql.RunStore("GetAllProds", para);
+
+            try
+            {
+                prods = DataAccessSql.convertToListSP(ds.Tables[0]);
+                //prods = db.SanPhams.ToList();
+                ViewBag.Prods = prods;
+                ViewBag.TotalProds = prods.Count;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message.ToString());
+            }
             return View("Index");
         }
 
@@ -31,10 +42,25 @@ namespace honeyWeb.Controllers
 
         public ActionResult Details(string id = null)
         {
-            SanPham sanpham = db.SanPhams.Find(id);
-            if (sanpham == null)
+            //SanPham sanpham = db.SanPhams.Find(id);
+            SanPham sanpham = new SanPham();
+            SqlParameter[] para = { 
+                DataAccessSql.AddParameter("@prodID", SqlDbType.NVarChar, 20, id)
+                                  };
+            ds = DataAccessSql.RunStore("GetDetailProdById", para);
+
+            try
             {
-                return HttpNotFound();
+                prods = DataAccessSql.convertToListSP(ds.Tables[0]);
+                sanpham = prods[0];
+                if (sanpham == null)
+                {
+                    return HttpNotFound();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message.ToString());
             }
             return View(sanpham);
         }

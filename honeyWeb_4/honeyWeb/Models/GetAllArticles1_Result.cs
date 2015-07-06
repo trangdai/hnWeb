@@ -10,14 +10,12 @@
 namespace honeyWeb.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class BaiViet
+    public partial class GetAllArticles1_Result
     {
         public int id { get; set; }
         public string tieu_de { get; set; }
         public string noi_dung { get; set; }
         public System.DateTime thoi_gian { get; set; }
-        public string ghi_chu { get; set; }
     }
 }

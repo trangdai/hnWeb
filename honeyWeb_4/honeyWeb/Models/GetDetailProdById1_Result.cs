@@ -10,14 +10,17 @@
 namespace honeyWeb.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class BaiViet
+    public partial class GetDetailProdById1_Result
     {
-        public int id { get; set; }
-        public string tieu_de { get; set; }
-        public string noi_dung { get; set; }
-        public System.DateTime thoi_gian { get; set; }
+        public string id { get; set; }
+        public string ten_sp { get; set; }
+        public double gia_sp { get; set; }
+        public string hinh_anh { get; set; }
+        public int tinh_trang { get; set; }
         public string ghi_chu { get; set; }
+        public bool visible { get; set; }
+        public string mo_ta_ngan { get; set; }
+        public string mo_ta_chi_tiet { get; set; }
     }
 }
