@@ -18,6 +18,7 @@ namespace honeyWeb.Controllers
         private HoneyDBEntities db = new HoneyDBEntities();
         private int TOTAL_ARTICLE_PER_PAGE = 7;
         private List<SanPham> prods = new List<SanPham>();
+        DataSet ds = new DataSet();
 
         public ActionResult Index()
         {
@@ -122,45 +123,62 @@ namespace honeyWeb.Controllers
 */
 
         [HttpPost]
-        public ActionResult Contact(string cateId, FormCollection collection)
+        public ActionResult Contact(String cateId, FormCollection collection)
         {
             ViewBag.Message = "Your contact page.";
             KhachHang kh = new KhachHang();//2
             DonDatHang don = new DonDatHang();
             IEnumerable<SanPham> sp = (IEnumerable<SanPham>)db.SanPhams;
             //ViewBag.Prods = new SelectList(sp, "id", "ten_sp");
-            ViewBag.Prods = new SelectList(sp, "id", "ghi_chu");
+
             try
             {
+                ViewBag.Prods = new SelectList(sp, "id", "ghi_chu");
+
 				//get data
 				String hoten = collection["Name"];
 				String email = collection.Get("Email");
 				String sdt = collection.Get("Phone");
 				String diachi = collection["Address"];
 				String soluong = collection["Quantity"];
+                String id_kh = sdt.Substring(2);
 
-                //if (hoten == "" || hoten == null || email == "" || email == null ||
+/*                //if (hoten == "" || hoten == null || email == "" || email == null ||
                 //    sdt == "" || sdt == null || diachi == "" || diachi == null || soluong == "" || soluong == null)
                 //{
                 //    return RedirectToAction("ErrorFilling");
                 //}
-
+*/
 				//if customer first buy
-				if(checkVisibleKhachHang(sdt) == null){
-				//register n save info
-                    kh.id = sdt.Substring(2);//id 10 chu so
-                    kh.username = kh.id;
-                    kh.password = kh.id;
-                    kh.loai_khach_hang = "bt";
-                    kh.visible = true;
-					kh.ho_ten = collection["Name"];
-					kh.email = collection.Get("Email");
-					kh.sdt = collection.Get("Phone");
-					kh.dia_chi = collection["Address"];	
-					kh.so_luong_tich_luy = 0;
-					db.KhachHangs.Add(kh);
-				}
+
+                //if(checkVisibleKhachHang(sdt) == null){
+                ////register n save info
+                //    kh.id = sdt.Substring(2);//id 10 chu so
+                //    kh.username = kh.id;
+                //    kh.password = kh.id;
+                //    kh.loai_khach_hang = "bt";
+                //    kh.visible = true;
+                //    kh.ho_ten = collection["Name"];
+                //    kh.email = collection.Get("Email");
+                //    kh.sdt = collection.Get("Phone");
+                //    kh.dia_chi = collection["Address"];	
+                //    kh.so_luong_tich_luy = 0;
+                //    db.KhachHangs.Add(kh);
+                //}
+
                 
+				SqlParameter[] para = { 
+					DataAccessSql.AddParameter("@id",SqlDbType.NVarChar,10,id_kh),
+					DataAccessSql.AddParameter("@username", SqlDbType.NVarChar, 50, id_kh),
+					DataAccessSql.AddParameter("@password", SqlDbType.NVarChar, 20, id_kh),
+					DataAccessSql.AddParameter("@loaiKH", SqlDbType.NVarChar, 20, "bt"),
+					DataAccessSql.AddParameter("@hoten", SqlDbType.NVarChar, 100, hoten),
+					DataAccessSql.AddParameter("@email", SqlDbType.NVarChar, 20, email),
+					DataAccessSql.AddParameter("@sdt", SqlDbType.NVarChar, 20, sdt),
+					DataAccessSql.AddParameter("@diachi", SqlDbType.NVarChar, 100, diachi)
+				};				
+
+                ds = DataAccessSql.RunStore("AddNewCustomer", para);
 				//save the bill
                 DateTime time = DateTime.Now;
                 String t = time.ToString();
@@ -169,15 +187,23 @@ namespace honeyWeb.Controllers
                 for(var i=0;i<words.Length;i++){
                     result += words[i];
                 }
-                don.id = sdt +result;
-				don.id_kh = sdt;
-				don.id_sp = cateId;
-				don.so_luong_sp = Int32.Parse(soluong);
-                don.thoi_gian = time;
-                plusMarkToKhachHang(sdt, Int32.Parse(soluong));
-				db.DonDatHangs.Add(don);
-				
-				db.SaveChanges();
+                //don.id = sdt +result;
+                //don.id_kh = sdt;
+                //don.id_sp = cateId;
+                //don.so_luong_sp = Int32.Parse(soluong);
+                //don.thoi_gian = time;
+                //db.DonDatHangs.Add(don);
+                //db.SaveChanges();
+                SqlParameter[] para1 = { 
+					DataAccessSql.AddParameter("@id", SqlDbType.NVarChar, 50, sdt +'o'+result),
+					DataAccessSql.AddParameter("@idKH", SqlDbType.NVarChar, 20,id_kh),
+					DataAccessSql.AddParameter("@idSP", SqlDbType.NVarChar, 10, cateId),
+					DataAccessSql.AddParameter("@soluong", SqlDbType.Int, 50, Int32.Parse(soluong)),
+					DataAccessSql.AddParameter("@thoigian", SqlDbType.DateTime, 50, time)
+				};
+                DataAccessSql.RunStore("AddNewPayment", para1);
+
+                plusMarkToKhachHang(id_kh, Int32.Parse(soluong));
 
             }
             catch (DbEntityValidationException dbEx)
@@ -208,11 +234,36 @@ namespace honeyWeb.Controllers
 		
 		public void plusMarkToKhachHang(String id, int mark)
 		{
-			KhachHang kh = db.KhachHangs.Find(id);
-			if(kh != null)// || kh != undefined)
+            List<KhachHang> lst = new List<KhachHang>();
+            KhachHang kh = new KhachHang();
+            int myMark = 0;
+            //KhachHang kh = db.KhachHangs.Find(id);
+            //if(kh != null)// || kh != undefined)
+            //{
+            //    kh.so_luong_tich_luy = kh.so_luong_tich_luy + mark;
+            //}
+            try
             {
-				kh.so_luong_tich_luy = kh.so_luong_tich_luy + mark;
-			}
+                SqlParameter[] para = { DataAccessSql.AddParameter("@id", SqlDbType.NVarChar, 20, id) };
+                ds = DataAccessSql.RunStore("GetCustomerById", para);
+                lst = DataAccessSql.convertToListKH(ds.Tables[0]);
+                if (lst.Count > 0)
+                {
+                    kh = lst[0];
+                    myMark = (Int32)kh.so_luong_tich_luy + mark;
+
+                    SqlParameter[] para1 = { 
+                                         DataAccessSql.AddParameter("@id", SqlDbType.NVarChar, 20, id),
+                                         DataAccessSql.AddParameter("@mark", SqlDbType.Int, 50, mark)
+                                      };
+                    DataAccessSql.RunStore("UpdateMarkCustomer", para1);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message.ToString());
+            }
+
 		}
 
 		// int temp;

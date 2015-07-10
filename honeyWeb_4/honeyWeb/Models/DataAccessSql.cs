@@ -150,6 +150,26 @@ namespace honeyWeb.Models
             return list;
         }
 
-
+        public static List<KhachHang> convertToListKH(DataTable dt)
+        {
+            List<KhachHang> list = new List<KhachHang>();
+            list = (from DataRow dr in dt.Rows
+                    select new KhachHang()
+                    {
+                        //id = Convert.ToInt32(dr["id"]),
+                        id = dr["id"].ToString(),
+                        username = dr["username"].ToString(),
+                        password = dr["password"].ToString(),
+                        ho_ten = dr["ho_ten"].ToString(),
+                        sdt = dr["sdt"].ToString(),
+                        email = dr["email"].ToString(),
+                        dia_chi = dr["dia_chi"].ToString(),
+                        loai_khach_hang = dr["loai_khach_hang"].ToString(),
+                        ghi_chu = dr["ghi_chu"].ToString(),
+                        visible = Convert.ToBoolean(dr["visible"]),
+                        so_luong_tich_luy = Convert.ToInt32(dr["so_luong_tich_luy"]),
+                    }).ToList();
+            return list;
+        }
     }
 }

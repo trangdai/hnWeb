@@ -133,13 +133,30 @@
           <Property Name="ten" Type="nvarchar" Nullable="false" MaxLength="100" />
           <Property Name="ghi_chu" Type="ntext" />
         </EntityType>
+        <Function Name="AddNewCustomer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="nvarchar" Mode="In" />
+          <Parameter Name="username" Type="nvarchar" Mode="In" />
+          <Parameter Name="password" Type="nvarchar" Mode="In" />
+          <Parameter Name="loaiKH" Type="nvarchar" Mode="In" />
+          <Parameter Name="hoten" Type="nvarchar" Mode="In" />
+          <Parameter Name="email" Type="nvarchar" Mode="In" />
+          <Parameter Name="sdt" Type="nvarchar" Mode="In" />
+          <Parameter Name="diachi" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="GetAllArticles" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="GetAllProds" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetCustomerById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="GetDetailProdById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="prodID" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="GetDetailProdByName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="prodName" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="UpdateMarkCustomer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="nvarchar" Mode="In" />
+          <Parameter Name="mark" Type="int" Mode="In" />
         </Function>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -171,6 +188,23 @@
           </FunctionImport>
           <FunctionImport Name="GetDetailProdByName1" ReturnType="Collection(HoneyDBModel.GetDetailProdByName1_Result)">
           <Parameter Name="prodName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="AddNewCustomer">
+            <Parameter Name="id" Mode="In" Type="String" />
+            <Parameter Name="username" Mode="In" Type="String" />
+            <Parameter Name="password" Mode="In" Type="String" />
+            <Parameter Name="loaiKH" Mode="In" Type="String" />
+            <Parameter Name="hoten" Mode="In" Type="String" />
+            <Parameter Name="email" Mode="In" Type="String" />
+            <Parameter Name="sdt" Mode="In" Type="String" />
+            <Parameter Name="diachi" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetCustomerById" ReturnType="Collection(HoneyDBModel.GetCustomerById_Result)">
+            <Parameter Name="id" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UpdateMarkCustomer">
+            <Parameter Name="id" Mode="In" Type="String" />
+            <Parameter Name="mark" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="BaiViet">
@@ -357,6 +391,19 @@
           <Property Type="String" Name="mo_ta_ngan" Nullable="true" MaxLength="1000" />
           <Property Type="String" Name="mo_ta_chi_tiet" Nullable="true" MaxLength="Max" />
         </ComplexType>
+        <ComplexType Name="GetCustomerById_Result">
+          <Property Type="String" Name="id" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="username" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="password" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="ho_ten" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="sdt" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="email" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="dia_chi" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="loai_khach_hang" Nullable="false" MaxLength="10" />
+          <Property Type="Boolean" Name="visible" Nullable="false" />
+          <Property Type="Int32" Name="so_luong_tich_luy" Nullable="true" />
+          <Property Type="String" Name="ghi_chu" Nullable="true" MaxLength="Max" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -532,6 +579,25 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="AddNewCustomer" FunctionName="HoneyDBModel.Store.AddNewCustomer" />
+          <FunctionImportMapping FunctionImportName="GetCustomerById" FunctionName="HoneyDBModel.Store.GetCustomerById">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="HoneyDBModel.GetCustomerById_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="ho_ten" ColumnName="ho_ten" />
+                <ScalarProperty Name="sdt" ColumnName="sdt" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="dia_chi" ColumnName="dia_chi" />
+                <ScalarProperty Name="loai_khach_hang" ColumnName="loai_khach_hang" />
+                <ScalarProperty Name="visible" ColumnName="visible" />
+                <ScalarProperty Name="so_luong_tich_luy" ColumnName="so_luong_tich_luy" />
+                <ScalarProperty Name="ghi_chu" ColumnName="ghi_chu" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UpdateMarkCustomer" FunctionName="HoneyDBModel.Store.UpdateMarkCustomer" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

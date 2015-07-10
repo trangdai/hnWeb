@@ -94,5 +94,64 @@ namespace honeyWeb.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetDetailProdByName1_Result>("GetDetailProdByName1", prodNameParameter);
         }
+    
+        public virtual int AddNewCustomer(string id, string username, string password, string loaiKH, string hoten, string email, string sdt, string diachi)
+        {
+            var idParameter = id != null ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(string));
+    
+            var usernameParameter = username != null ?
+                new ObjectParameter("username", username) :
+                new ObjectParameter("username", typeof(string));
+    
+            var passwordParameter = password != null ?
+                new ObjectParameter("password", password) :
+                new ObjectParameter("password", typeof(string));
+    
+            var loaiKHParameter = loaiKH != null ?
+                new ObjectParameter("loaiKH", loaiKH) :
+                new ObjectParameter("loaiKH", typeof(string));
+    
+            var hotenParameter = hoten != null ?
+                new ObjectParameter("hoten", hoten) :
+                new ObjectParameter("hoten", typeof(string));
+    
+            var emailParameter = email != null ?
+                new ObjectParameter("email", email) :
+                new ObjectParameter("email", typeof(string));
+    
+            var sdtParameter = sdt != null ?
+                new ObjectParameter("sdt", sdt) :
+                new ObjectParameter("sdt", typeof(string));
+    
+            var diachiParameter = diachi != null ?
+                new ObjectParameter("diachi", diachi) :
+                new ObjectParameter("diachi", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddNewCustomer", idParameter, usernameParameter, passwordParameter, loaiKHParameter, hotenParameter, emailParameter, sdtParameter, diachiParameter);
+        }
+    
+        public virtual ObjectResult<GetCustomerById_Result> GetCustomerById(string id)
+        {
+            var idParameter = id != null ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetCustomerById_Result>("GetCustomerById", idParameter);
+        }
+    
+        public virtual int UpdateMarkCustomer(string id, Nullable<int> mark)
+        {
+            var idParameter = id != null ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(string));
+    
+            var markParameter = mark.HasValue ?
+                new ObjectParameter("mark", mark) :
+                new ObjectParameter("mark", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateMarkCustomer", idParameter, markParameter);
+        }
     }
 }
