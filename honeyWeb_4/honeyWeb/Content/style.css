@@ -759,6 +759,7 @@ footer a:hover{color:#f7bc00;}
 .col-3{width: 13%; text-align: center !important;}
 .col-4{width: 13%; text-align: center !important;}
 
+
 /*----------- end table ---------------*/
 .title-detail {
     color:blue;
@@ -785,6 +786,50 @@ footer a:hover{color:#f7bc00;}
 }
 .wrapper input {
     width:350px;
+}
+/*=================================TABLE PRODUCT=======================================================*/
+table {
+    width:100%;
+}
+table, th, td {
+    /*border: 1px solid black;*/
+    border-collapse: collapse;
+}
+th, td {
+    padding: 5px;
+    text-align: left;
+}
+table#t01 .row1{
+    background-color: #e1e1e1;
+}
+table#t01 {
+    margin-left:-50px;
+}
+table#t01 tr:nth-child(even) {
+    background-color: #eee;
+}
+table#t01 tr:nth-child(odd) {
+   background-color:#fff;
+}
+table#t01 th	{
+    background-color: black;
+    color: white;
+}
+.shortInput {
+    width:40px;
+}
+.shortInput2 {
+    width:70px;
+}
+.autoInput {
+    width:auto;
+}
+.imgProd, .img_project img {
+    width:200px;
+    height:292px;
+}
+#content {
+    margin-bottom:40px;
 }
 /*==================================RESPONSIVE LAYOUTS===============================================*/
 @media only screen and (max-width: 1039px) {

@@ -4,14 +4,16 @@
     ViewBag.Title = "Edit";
 }
 
+<div class="container_12">
+
 <h2>Edit</h2>
 
-@using (Html.BeginForm()) {
+@using (Html.BeginForm())
+{
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
-    <fieldset>
-        <legend>SanPham</legend>
+    <fieldset>        <legend>SanPham</legend>
 
         @Html.HiddenFor(model => model.id)
 
@@ -30,19 +32,11 @@
             @Html.EditorFor(model => model.gia_sp)
             @Html.ValidationMessageFor(model => model.gia_sp)
         </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.khuyen_mai)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.khuyen_mai)
-            @Html.ValidationMessageFor(model => model.khuyen_mai)
-        </div>
-
         <div class="editor-label">
             @Html.LabelFor(model => model.tinh_trang)
         </div>
-        <div class="editor-field">
+        <div c
+            ass="editor-field">
             @Html.EditorFor(model => model.tinh_trang)
             @Html.ValidationMessageFor(model => model.tinh_trang)
         </div>
@@ -63,6 +57,39 @@
             @Html.ValidationMessageFor(model => model.visible)
         </div>
 
+        <table id="t01">    
+            <tr>
+                <td>Stt</td>
+                <td>Id</td>
+                <td>Tên sản phẩm</td>
+                <td>Giá sản phẩm</td>
+                <td>Hình ảnh</td>
+                <td>Tình trạng</td>
+                <td>Ghi chú</td>
+                <td>Visible</td>
+                <td>Mô tả ngắn</td>
+                <td>Mô tả chi tiết</td>
+            </tr>
+            @{var i=1;}
+            @foreach (var item in ViewBag.Prods)
+            {
+                <tr>
+                    <td class="editor-field">@i</td>
+                    <td class="editor-field">@item.id</td>
+                    <td class="editor-field">@item.ten_sp</td>
+                    <td class="editor-field">@item.gia_sp</td>
+                    <td class="editor-field">@item.hinh_anh</td>
+                    <td class="editor-field">@item.tinh_trang</td>
+                    <td class="editor-field">@item.ghi_chu</td>
+                    <td class="editor-field">@item.visible</td>
+                    <td class="editor-field">@item.mo_ta_ngan</td>
+                    <td class="editor-field">@item.mo_ta_chi_tiet</td>
+                    @{i++; }
+                </tr>
+                
+                
+            }        
+        </table>
         <p>
             <input type="submit" value="Save" />
         </p>
@@ -73,6 +100,4 @@
     @Html.ActionLink("Back to List", "Index")
 </div>
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+</div>

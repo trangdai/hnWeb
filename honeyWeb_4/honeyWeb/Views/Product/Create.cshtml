@@ -4,73 +4,105 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
+<div class="container_12">
 
-@using (Html.BeginForm()) {
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
+    
+    <h2>Create</h2>
 
-    <fieldset>
-        <legend>SanPham</legend>
+	<form id="contact-form" method="post" onsubmit="return validateForm()" name="Form">
+        @using (@Ajax.BeginForm("Create", "Product", new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "ketquaContact" }, new { id = "IdformContact" }))
+        {
+             @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+ 			<div class="success-message">Thông tin liên hệ! <strong>We will be in touch soon.</strong></div>
+			<div class="wrapper">
+				<label class="name">
+                    <input type="text" name="ID" placeholder="ID*:" data-constraints=""/>
+					<span class="empty-message">*This field is required.</span>
+					<span class="error-message"> *This is not a valid name.</span>
+				</label>
+				<label class="name">
+                    <input type="text" name="Name" placeholder="Tên sản phẩm*:" data-constraints="aRequired aJustLetters"/>
+					<span class="empty-message">*This field is required.</span>
+					<span class="error-message"> *This is not a valid name.</span>
+				</label>
+				<label class="name">
+                    <input type="text" name="Price" placeholder="Giá*:" data-constraints=""/>
+					<span class="empty-message">*This field is required.</span>
+					<span class="error-message"> *This is not a valid name.</span>
+				</label>
+				<label class="name">
+                    <input type="text" name="Image" placeholder="Hình ảnh*:" data-constraints=""/>
+					<span class="empty-message">*This field is required.</span>
+					<span class="error-message"> *This is not a valid name.</span>
+				</label>
+				<label class="name">
+                    <input type="text" name="Status" placeholder="Tình trạng*:" data-constraints=""/>
+					<span class="empty-message">*This field is required.</span>
+					<span class="error-message"> *This is not a valid name.</span>
+				</label>
+				<label class="name">
+                    <input type="text" name="Note" placeholder="Ghi chú:" data-constraints=""/>
+					<span class="empty-message">*This field is required.</span>
+					<span class="error-message"> *This is not a valid name.</span>
+				</label>
+				<label class="name">
+                    <input type="text" name="ShortDetail" placeholder="Mô tả ngắn*:" data-constraints=""/>
+					<span class="empty-message">*This field is required.</span>
+					<span class="error-message"> *This is not a valid name.</span>
+				</label>
+				<label class="name">
+                    <input type="text" name="Detail" placeholder="Mô tả chi tiết*:" data-constraints=""/>
+					<span class="empty-message">*This field is required.</span>
+					<span class="error-message"> *This is not a valid name.</span>
+				</label>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.ten_sp)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.ten_sp)
-            @Html.ValidationMessageFor(model => model.ten_sp)
-        </div>
+            </div>
+            
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.gia_sp)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.gia_sp)
-            @Html.ValidationMessageFor(model => model.gia_sp)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.khuyen_mai)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.khuyen_mai)
-            @Html.ValidationMessageFor(model => model.khuyen_mai)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.tinh_trang)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.tinh_trang)
-            @Html.ValidationMessageFor(model => model.tinh_trang)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.ghi_chu)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.ghi_chu)
-            @Html.ValidationMessageFor(model => model.ghi_chu)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.visible)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.visible)
-            @Html.ValidationMessageFor(model => model.visible)
-        </div>
-
-        <p>
-            <input type="submit" value="Create" />
-        </p>
-    </fieldset>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
+			<div class="form_btns" style="width:80%">
+				<a href="#" data-type="reset" class="more_btn2">Clear</a> 
+				<a href="#" data-type="submit" class="more_btn2">Submit</a>
+                <a><input type="submit" value="Submit"/></a>
+			</div>  
+            
+        }
+    </form>
 </div>
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+	<!--- scripts -->
+	<script>
+		$(document).ready(function () {
+		  //called when key is pressed in textbox
+		  $("#quantity").keypress(function (e) {
+			 //if the letter is not digit then display error and don't type anything
+			 if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+				//display error message
+				$(".error-message").show().fadeOut("slow");
+					   return false;
+			}
+		  });
+
+		});
+
+		function validateForm() {
+		    //alert("validateForm");
+		    var a1 = document.forms["Form"]["ID"].value;
+		    var a = document.forms["Form"]["Name"].value;
+		    var b = document.forms["Form"]["Price"].value;
+		    var c = document.forms["Form"]["Image"].value;
+		    var d = document.forms["Form"]["Status"].value;
+
+		    //alert("aaaaaaaaaaa-------"+a);
+		    if (a1 == "" || a1 == undefined || a == "" || a == undefined || b == "" || b == undefined ||
+                c == "" || c == undefined || d == "" || d == undefined)
+		    {
+		        alert("Vui lòng điền đầy đủ thông tin!");
+		        return false;
+		    }
+		}
+
+		
+	</script>
+
+

@@ -157,7 +157,7 @@
                                 {
 					                <div class="wrapp  maxheight">
 						                <a href="/Product/Details/@ViewBag.Prods[i + t + i * t].id" class="img_project">
-							                <img alt="" src="@ViewBag.Prods[i + t + i * t].hinh_anh" />
+							                <img alt="" src="@ViewBag.Prods[i + t + i * t].hinh_anh" class="imgProd"/>
                                             @if(@ViewBag.Prods[i + t + i * t].tinh_trang == 1){
 							                <span class="price_sign">Còn hàng</span>
                                             }else{
@@ -176,7 +176,7 @@
                                 {
 					                <div class="wrapper marTop1">
 						                <a href="/Product/Details/@ViewBag.Prods[i + 4 * (t + 1)].id" class="img_project">
-							                <img alt="" src="@ViewBag.Prods[i + 4 * (t + 1)].hinh_anh" />
+							                <img alt="" src="@ViewBag.Prods[i + 4 * (t + 1)].hinh_anh" class="imgProd"/>
 							                <!--<span class="price_sign"> @ViewBag.Prods[i + 4 * (t + 1)].gia_sp</span>-->
                                             @if (@ViewBag.Prods[i + 4 * (t + 1)].tinh_trang == 1)
                                             {

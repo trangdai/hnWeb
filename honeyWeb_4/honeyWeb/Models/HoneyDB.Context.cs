@@ -38,6 +38,7 @@ namespace honeyWeb.Models
         public DbSet<SanPham> SanPhams { get; set; }
         public DbSet<TinhTrangSanPham> TinhTrangSanPhams { get; set; }
         public DbSet<TrangThaiDonHang> TrangThaiDonHangs { get; set; }
+        public DbSet<sysdiagram> sysdiagrams { get; set; }
     
         public virtual ObjectResult<GetAllArticles_Result> GetAllArticles()
         {
@@ -152,6 +153,266 @@ namespace honeyWeb.Models
                 new ObjectParameter("mark", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateMarkCustomer", idParameter, markParameter);
+        }
+    
+        public virtual int AddNewPayment(string id, string idKH, string idSP, Nullable<int> soluong, Nullable<System.DateTime> thoigian)
+        {
+            var idParameter = id != null ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(string));
+    
+            var idKHParameter = idKH != null ?
+                new ObjectParameter("idKH", idKH) :
+                new ObjectParameter("idKH", typeof(string));
+    
+            var idSPParameter = idSP != null ?
+                new ObjectParameter("idSP", idSP) :
+                new ObjectParameter("idSP", typeof(string));
+    
+            var soluongParameter = soluong.HasValue ?
+                new ObjectParameter("soluong", soluong) :
+                new ObjectParameter("soluong", typeof(int));
+    
+            var thoigianParameter = thoigian.HasValue ?
+                new ObjectParameter("thoigian", thoigian) :
+                new ObjectParameter("thoigian", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddNewPayment", idParameter, idKHParameter, idSPParameter, soluongParameter, thoigianParameter);
+        }
+    
+        public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            var versionParameter = version.HasValue ?
+                new ObjectParameter("version", version) :
+                new ObjectParameter("version", typeof(int));
+    
+            var definitionParameter = definition != null ?
+                new ObjectParameter("definition", definition) :
+                new ObjectParameter("definition", typeof(byte[]));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_alterdiagram", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
+        }
+    
+        public virtual int sp_creatediagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            var versionParameter = version.HasValue ?
+                new ObjectParameter("version", version) :
+                new ObjectParameter("version", typeof(int));
+    
+            var definitionParameter = definition != null ?
+                new ObjectParameter("definition", definition) :
+                new ObjectParameter("definition", typeof(byte[]));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_creatediagram", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
+        }
+    
+        public virtual int sp_dropdiagram(string diagramname, Nullable<int> owner_id)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_dropdiagram", diagramnameParameter, owner_idParameter);
+        }
+    
+        public virtual ObjectResult<sp_helpdiagramdefinition_Result> sp_helpdiagramdefinition(string diagramname, Nullable<int> owner_id)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_helpdiagramdefinition_Result>("sp_helpdiagramdefinition", diagramnameParameter, owner_idParameter);
+        }
+    
+        public virtual ObjectResult<sp_helpdiagrams_Result> sp_helpdiagrams(string diagramname, Nullable<int> owner_id)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_helpdiagrams_Result>("sp_helpdiagrams", diagramnameParameter, owner_idParameter);
+        }
+    
+        public virtual int sp_renamediagram(string diagramname, Nullable<int> owner_id, string new_diagramname)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            var new_diagramnameParameter = new_diagramname != null ?
+                new ObjectParameter("new_diagramname", new_diagramname) :
+                new ObjectParameter("new_diagramname", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_renamediagram", diagramnameParameter, owner_idParameter, new_diagramnameParameter);
+        }
+    
+        public virtual int sp_upgraddiagrams()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
+        }
+    
+        public virtual int AddNewProduct(string id, string tensp, Nullable<double> giasp, string img, Nullable<int> tinhtrang, string motangan, string motachitiet, string ghichu, Nullable<bool> visible)
+        {
+            var idParameter = id != null ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(string));
+    
+            var tenspParameter = tensp != null ?
+                new ObjectParameter("tensp", tensp) :
+                new ObjectParameter("tensp", typeof(string));
+    
+            var giaspParameter = giasp.HasValue ?
+                new ObjectParameter("giasp", giasp) :
+                new ObjectParameter("giasp", typeof(double));
+    
+            var imgParameter = img != null ?
+                new ObjectParameter("img", img) :
+                new ObjectParameter("img", typeof(string));
+    
+            var tinhtrangParameter = tinhtrang.HasValue ?
+                new ObjectParameter("tinhtrang", tinhtrang) :
+                new ObjectParameter("tinhtrang", typeof(int));
+    
+            var motanganParameter = motangan != null ?
+                new ObjectParameter("motangan", motangan) :
+                new ObjectParameter("motangan", typeof(string));
+    
+            var motachitietParameter = motachitiet != null ?
+                new ObjectParameter("motachitiet", motachitiet) :
+                new ObjectParameter("motachitiet", typeof(string));
+    
+            var ghichuParameter = ghichu != null ?
+                new ObjectParameter("ghichu", ghichu) :
+                new ObjectParameter("ghichu", typeof(string));
+    
+            var visibleParameter = visible.HasValue ?
+                new ObjectParameter("visible", visible) :
+                new ObjectParameter("visible", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddNewProduct", idParameter, tenspParameter, giaspParameter, imgParameter, tinhtrangParameter, motanganParameter, motachitietParameter, ghichuParameter, visibleParameter);
+        }
+    
+        public virtual int AddNewProduct1(string id, string tensp, Nullable<double> giasp, string img, Nullable<int> tinhtrang, string motangan, string motachitiet, string ghichu, Nullable<bool> visible)
+        {
+            var idParameter = id != null ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(string));
+    
+            var tenspParameter = tensp != null ?
+                new ObjectParameter("tensp", tensp) :
+                new ObjectParameter("tensp", typeof(string));
+    
+            var giaspParameter = giasp.HasValue ?
+                new ObjectParameter("giasp", giasp) :
+                new ObjectParameter("giasp", typeof(double));
+    
+            var imgParameter = img != null ?
+                new ObjectParameter("img", img) :
+                new ObjectParameter("img", typeof(string));
+    
+            var tinhtrangParameter = tinhtrang.HasValue ?
+                new ObjectParameter("tinhtrang", tinhtrang) :
+                new ObjectParameter("tinhtrang", typeof(int));
+    
+            var motanganParameter = motangan != null ?
+                new ObjectParameter("motangan", motangan) :
+                new ObjectParameter("motangan", typeof(string));
+    
+            var motachitietParameter = motachitiet != null ?
+                new ObjectParameter("motachitiet", motachitiet) :
+                new ObjectParameter("motachitiet", typeof(string));
+    
+            var ghichuParameter = ghichu != null ?
+                new ObjectParameter("ghichu", ghichu) :
+                new ObjectParameter("ghichu", typeof(string));
+    
+            var visibleParameter = visible.HasValue ?
+                new ObjectParameter("visible", visible) :
+                new ObjectParameter("visible", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddNewProduct1", idParameter, tenspParameter, giaspParameter, imgParameter, tinhtrangParameter, motanganParameter, motachitietParameter, ghichuParameter, visibleParameter);
+        }
+    
+        public virtual int AddNewProduct2(string id, string tensp, Nullable<double> giasp, string img, Nullable<int> tinhtrang, string motangan, string motachitiet, string ghichu, Nullable<bool> visible)
+        {
+            var idParameter = id != null ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(string));
+    
+            var tenspParameter = tensp != null ?
+                new ObjectParameter("tensp", tensp) :
+                new ObjectParameter("tensp", typeof(string));
+    
+            var giaspParameter = giasp.HasValue ?
+                new ObjectParameter("giasp", giasp) :
+                new ObjectParameter("giasp", typeof(double));
+    
+            var imgParameter = img != null ?
+                new ObjectParameter("img", img) :
+                new ObjectParameter("img", typeof(string));
+    
+            var tinhtrangParameter = tinhtrang.HasValue ?
+                new ObjectParameter("tinhtrang", tinhtrang) :
+                new ObjectParameter("tinhtrang", typeof(int));
+    
+            var motanganParameter = motangan != null ?
+                new ObjectParameter("motangan", motangan) :
+                new ObjectParameter("motangan", typeof(string));
+    
+            var motachitietParameter = motachitiet != null ?
+                new ObjectParameter("motachitiet", motachitiet) :
+                new ObjectParameter("motachitiet", typeof(string));
+    
+            var ghichuParameter = ghichu != null ?
+                new ObjectParameter("ghichu", ghichu) :
+                new ObjectParameter("ghichu", typeof(string));
+    
+            var visibleParameter = visible.HasValue ?
+                new ObjectParameter("visible", visible) :
+                new ObjectParameter("visible", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddNewProduct2", idParameter, tenspParameter, giaspParameter, imgParameter, tinhtrangParameter, motanganParameter, motachitietParameter, ghichuParameter, visibleParameter);
+        }
+    
+        public virtual int DeleteProdItem(string id)
+        {
+            var idParameter = id != null ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DeleteProdItem", idParameter);
         }
     }
 }

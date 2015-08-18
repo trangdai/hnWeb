@@ -1,0 +1,103 @@
+﻿@model honeyWeb.Models.SanPham
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<div class="container_12">
+
+<h2>Edit 999</h2>
+
+@using (Html.BeginForm())
+{
+     @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    
+        <form id="contact-form" method="post" onsubmit="return validateForm()" name="Form">
+        <table id="t01">    
+            <tr class="row1">
+                <td>Xóa</td>
+                <td>Stt</td>
+                <td>Id</td>
+                <td>Tên sản phẩm</td>
+                <td>Giá sản phẩm</td>
+                <td>Hình ảnh</td>
+                <td>Tình trạng</td>
+                <td>Ghi chú</td>
+                <td>Mô tả ngắn</td>
+                <td>Mô tả chi tiết</td>
+            </tr>
+            @{var i=1;}
+            @foreach (var item in ViewBag.Prods)
+            {
+                <tr>
+                    <td class="editor-field">
+                       <input type="checkbox" name="Delete" value="@item.id" data-constraints="" class="shortInput"/>
+                    </td>
+                    <td class="">
+                        <p>@i</p>
+                        <!--<input type="text" name="stt" value="@i" data-constraints="" class="shortInput"/>-->
+                    </td>
+                    <td class="">
+                        <!--<p id="ID">@item.id</p>-->
+                        <input type="text" name="ID" value="@item.id" readonly data-constraints="aRequired aJustLetters"  class="shortInput2"/>
+                    </td>
+                    <td class="editor-field">
+                        <input type="text" name="Name" value="@item.ten_sp" data-constraints="aRequired aJustLetters" class="autoInput"/>
+                    </td>
+                    <td class="editor-field">
+                        <input type="number" name="Price" value="@item.gia_sp" data-constraints="" class="shortInput2"/>
+                    </td>
+                    <td class="editor-field">
+                        <label class="name">
+                       <input type="text" name="Image" value="@item.hinh_anh" data-constraints="" class="autoInput"/>
+                            </label>
+                    </td>
+                    <td class="editor-field">
+                        <input type="number" name="Status" value="@item.tinh_trang" data-constraints="" class="shortInput"/>
+                    </td>
+                    <td class="editor-field">
+                        <input type="text" name="Note" value="@item.ghi_chu" data-constraints="" class="autoInput"/>
+                    </td>
+                    <td class="editor-field">
+                        <input type="text" name="ShortDetail" value="@item.mo_ta_ngan" data-constraints="" class="autoInput"/>
+                    </td>
+                    <td class="editor-field">
+                        <input type="text" name="Detail" value="@item.mo_ta_chi_tiet" data-constraints="" class="autoInput"/>
+                    </td>
+                    @{i++; }
+                </tr>
+                
+            }        
+        </table>
+        <p>
+            <input type="submit" value="Save" onclick="validateForm()" />
+        </p>
+        </form>
+
+    
+}
+
+<div>
+    <p>@Html.ActionLink("Back to List", "Index")</p>
+
+    <p>@Html.ActionLink("Add New", "Create")</p>
+
+</div>
+    <br />
+    <br />
+    <script>
+        function validateForm() {
+           /* alert("alert: " + document.getElementsByName("Visible").checked);*/
+            alert("uuuuuuuuuuu");
+            var elem = document.getElementByName("Visible");
+            alert("aaaaaaaaaaa " + elem.checked);
+            if (elem.checked == true) {
+                elem.value = "true";
+            } else {
+                elem.value = "false";
+            }
+            alert("val "+elem.value);
+        }
+    </script>
+</div>
