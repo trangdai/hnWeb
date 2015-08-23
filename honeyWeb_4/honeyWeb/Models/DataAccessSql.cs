@@ -171,5 +171,35 @@ namespace honeyWeb.Models
                     }).ToList();
             return list;
         }
+
+        public static List<DonDatHang> convertToListDDH(DataTable dt)
+        {
+            List<DonDatHang> list = new List<DonDatHang>();
+            list = (from DataRow dr in dt.Rows
+                    select new DonDatHang()
+                    {
+                        id = dr["id"].ToString(),
+                        id_kh = dr["id_kh"].ToString(),
+                        id_sp = dr["id_sp"].ToString(),
+                        so_luong_sp = Convert.ToInt32(dr["so_luong_sp"]),
+                        thoi_gian = Convert.ToDateTime(dr["thoi_gian"].ToString()),
+                        tinh_trang = Convert.ToInt32(dr["tinh_trang"]),
+                        ghi_chu = dr["ghi_chu"].ToString()
+                    }).ToList();
+            return list;
+        }
+
+        public static List<TrangThaiDonHang> convertToListTTDH(DataTable dt)
+        {
+            List<TrangThaiDonHang> list = new List<TrangThaiDonHang>();
+            list = (from DataRow dr in dt.Rows
+                    select new TrangThaiDonHang()
+                    {
+                        id = Convert.ToInt32(dr["id"].ToString()),
+                        ten = dr["ten"].ToString(),
+                        ghi_chu = dr["ghi_chu"].ToString()
+                    }).ToList();
+            return list;
+        }
     }
 }

@@ -1,11 +1,8 @@
 ﻿@{
-    ViewBag.Title = "CustomerListView";
+    ViewBag.Title = "EditPayment";
 }
-
-
 <div class="container_12">
-
-<h2>CustomerListView</h2>
+<h2>EditPayment</h2>
 
 @using (Html.BeginForm())
 {
@@ -18,13 +15,11 @@
                 <td>Xóa</td>
                 <td>Stt</td>
                 <td>Id</td>
-                <td>username</td>
-                <td>Họ tên </td>
-                <td>Số điện thoại</td>
-                <td>Email </td>
-                <td>Địa chỉ</td>
-                <td>Loại khách hàng</td>
-                <td>Số lượng tích lũy</td>
+                <td>Khách hàng</td>
+                <td>Sản phẩm</td>
+                <td>Số lượng</td>
+                <td>Thời gian</td>
+                <td>Tình trạng</td>
                 <td>Ghi chú</td>
             </tr>
             @{var i=1;}
@@ -36,50 +31,57 @@
                     </td>
                     <td class="">
                         <p>@i</p>
-                        <!--<input type="text" name="stt" value="@i" data-constraints="" class="shortInput"/>-->
                     </td>
                     <td class="">
                         <!--<p id="ID">@item.id</p>-->
-                        <input type="text" name="ID" value="@item.id" readonly data-constraints="aRequired aJustLetters"  class="shortInput2"/>
+                        <input type="text" name="ID" value="@item.id" readonly data-constraints="aRequired aJustLetters"  class="autoInput"/>
                     </td>
                     <td class="editor-field">
-                        <input type="text" name="Username" value="@item.username" data-constraints="aRequired aJustLetters" class="shortInput2"/>
+                        <input type="text" name="IdCustomer" value="@item.id_kh" readonly class="autoInput"/>
                     </td>
                     <td class="editor-field">
-                        <input type="text" name="Name" value="@item.ho_ten" data-constraints="aRequired aJustLetters" class="autoInput"/>
+                        <input type="text" name="IdProd" value="@item.id_sp" readonly class="shortInput2"/>
                     </td>
                     <td class="editor-field">
-                        <input type="number" name="Phone" value="@item.sdt" data-constraints="" class="shortInput2"/>
+                        <input type="number" name="Quantity" value="@item.so_luong_sp" data-constraints="" class="shortInput2"/>
                     </td>
                     <td class="editor-field">
                         <label class="name">
-                       <input type="email" name="Email" value="@item.email" data-constraints="" class="autoInput"/>
+                       <input type="datetime" name="Time" value="@item.thoi_gian" data-constraints="" class="autoInput"/>
                             </label>
                     </td>
                     <td class="editor-field">
-                        <input type="text" name="Address" value="@item.dia_chi" data-constraints="" class="autoInput"/>
-                    </td>
-                    <td class="editor-field">
-                        <input type="text" name="Cate" value="@item.loai_khach_hang" data-constraints="" class="shortInput"/>
-                    </td>
-                    <td class="editor-field">
-                        <input type="number" name="Mark" value="@item.so_luong_tich_luy" data-constraints="" class="shortInput2"/>
+                        <input type="number" name="Status" value="@item.tinh_trang" data-constraints="" class="shortInput2"/>
                     </td>
                     <td class="editor-field">
                         <input type="text" name="Note" value="@item.ghi_chu" data-constraints="" class="autoInput"/>
                     </td>
-                    <td><input type="hidden" name="Pa" value="@item.password" /></td>
                     @{i++; }
                 </tr>
-                
             }        
+            <tr></tr>
         </table>
+            <table>
+                <tr><br /></tr>
+                <tr>
+                    <td>id</td>
+                    <td>Tên </td>
+                    <td>Ghi chú</td>
+                </tr>
+                 @for(var j=0; j<@ViewBag.TotalStatus;j++){
+                <tr>
+                    <td>@ViewBag.status[j].id</td>
+                    <td>@ViewBag.status[j].ten</td>
+                    <td>@ViewBag.status[j].ghi_chu</td>
+                </tr>
+                }
+                <tr><br /></tr>
+            </table>
         <p>
             <input type="submit" value="Save" onclick="validateForm()" />
         </p>
         </form>
 
-    
 }
 
 <div>
@@ -95,4 +97,7 @@
             return confirm("Bạn có đồng ý thay đổi ko?");
         }
     </script>
+
+
 </div>
+    

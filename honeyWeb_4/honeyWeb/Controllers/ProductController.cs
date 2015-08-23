@@ -160,14 +160,18 @@ namespace honeyWeb.Controllers
             int total;
             SanPham sp = new SanPham();
             try
-            {      
-                String t = collection["ID"];
+            {
+                deleteList = null;
+                String del = collection["Delete"];
+                if (del != null)
+                {
+                    deleteList = collection["Delete"].Split(',');
+                }
                 idList = collection["ID"].Split(',');
                 nameList = collection["Name"].Split(',');
                 priceList = collection["Price"].Split(',');
                 imgList = collection["Image"].Split(',');
                 statusList = collection["Status"].Split(',');
-                deleteList = collection["Delete"].Split(',');
                 shortDetailList = collection["ShortDetail"].Split(',');
                 detailList = collection["Detail"].Split(',');
                 noteList = collection["Note"].Split(',');
@@ -181,7 +185,7 @@ namespace honeyWeb.Controllers
                     sp.gia_sp = Double.Parse(priceList[i]);
                     sp.hinh_anh = imgList[i];
                     sp.tinh_trang = Int32.Parse(statusList[i]);
-                    //sp.visible = Boolean.Parse(visibleList[i]);
+                    sp.visible = true;
                     sp.mo_ta_ngan = shortDetailList[i];
                     sp.mo_ta_chi_tiet = detailList[i];
                     sp.ghi_chu = noteList[i];
@@ -196,7 +200,7 @@ namespace honeyWeb.Controllers
                 //}
 
                 //delete item
-                if (deleteList.Length > 0)
+                if (deleteList != null && deleteList.Length > 0)
                 {
                     for (int i = 0; i < deleteList.Length; i++)
                     {

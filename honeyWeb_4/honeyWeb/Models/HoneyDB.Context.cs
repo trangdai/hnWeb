@@ -96,7 +96,7 @@ namespace honeyWeb.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetDetailProdByName1_Result>("GetDetailProdByName1", prodNameParameter);
         }
     
-        public virtual int AddNewCustomer(string id, string username, string password, string loaiKH, string hoten, string email, string sdt, string diachi)
+        public virtual int AddNewCustomer(string id, string username, string password, string loaiKH, string hoten, string email, string sdt, string diachi, Nullable<bool> visible, Nullable<int> so_luong_tich_luy, string ghichu)
         {
             var idParameter = id != null ?
                 new ObjectParameter("id", id) :
@@ -130,7 +130,19 @@ namespace honeyWeb.Models
                 new ObjectParameter("diachi", diachi) :
                 new ObjectParameter("diachi", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddNewCustomer", idParameter, usernameParameter, passwordParameter, loaiKHParameter, hotenParameter, emailParameter, sdtParameter, diachiParameter);
+            var visibleParameter = visible.HasValue ?
+                new ObjectParameter("visible", visible) :
+                new ObjectParameter("visible", typeof(bool));
+    
+            var so_luong_tich_luyParameter = so_luong_tich_luy.HasValue ?
+                new ObjectParameter("so_luong_tich_luy", so_luong_tich_luy) :
+                new ObjectParameter("so_luong_tich_luy", typeof(int));
+    
+            var ghichuParameter = ghichu != null ?
+                new ObjectParameter("ghichu", ghichu) :
+                new ObjectParameter("ghichu", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddNewCustomer", idParameter, usernameParameter, passwordParameter, loaiKHParameter, hotenParameter, emailParameter, sdtParameter, diachiParameter, visibleParameter, so_luong_tich_luyParameter, ghichuParameter);
         }
     
         public virtual ObjectResult<GetCustomerById_Result> GetCustomerById(string id)
@@ -155,7 +167,7 @@ namespace honeyWeb.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateMarkCustomer", idParameter, markParameter);
         }
     
-        public virtual int AddNewPayment(string id, string idKH, string idSP, Nullable<int> soluong, Nullable<System.DateTime> thoigian)
+        public virtual int AddNewPayment(string id, string idKH, string idSP, Nullable<int> soluong, Nullable<System.DateTime> thoigian, Nullable<int> tinh_trang, string ghi_chu)
         {
             var idParameter = id != null ?
                 new ObjectParameter("id", id) :
@@ -177,7 +189,15 @@ namespace honeyWeb.Models
                 new ObjectParameter("thoigian", thoigian) :
                 new ObjectParameter("thoigian", typeof(System.DateTime));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddNewPayment", idParameter, idKHParameter, idSPParameter, soluongParameter, thoigianParameter);
+            var tinh_trangParameter = tinh_trang.HasValue ?
+                new ObjectParameter("tinh_trang", tinh_trang) :
+                new ObjectParameter("tinh_trang", typeof(int));
+    
+            var ghi_chuParameter = ghi_chu != null ?
+                new ObjectParameter("ghi_chu", ghi_chu) :
+                new ObjectParameter("ghi_chu", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddNewPayment", idParameter, idKHParameter, idSPParameter, soluongParameter, thoigianParameter, tinh_trangParameter, ghi_chuParameter);
         }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
@@ -413,6 +433,39 @@ namespace honeyWeb.Models
                 new ObjectParameter("id", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DeleteProdItem", idParameter);
+        }
+    
+        public virtual ObjectResult<GetAllCustomer_Result> GetAllCustomer()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAllCustomer_Result>("GetAllCustomer");
+        }
+    
+        public virtual int DeleteCustomer(string id)
+        {
+            var idParameter = id != null ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DeleteCustomer", idParameter);
+        }
+    
+        public virtual ObjectResult<GetAllPayment_Result> GetAllPayment()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAllPayment_Result>("GetAllPayment");
+        }
+    
+        public virtual int RemovePayment(string id)
+        {
+            var idParameter = id != null ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RemovePayment", idParameter);
+        }
+    
+        public virtual ObjectResult<GetStatusPayment_Result> GetStatusPayment()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetStatusPayment_Result>("GetStatusPayment");
         }
     }
 }

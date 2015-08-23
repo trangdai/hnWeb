@@ -88,16 +88,7 @@
     <br />
     <script>
         function validateForm() {
-           /* alert("alert: " + document.getElementsByName("Visible").checked);*/
-            alert("uuuuuuuuuuu");
-            var elem = document.getElementByName("Visible");
-            alert("aaaaaaaaaaa " + elem.checked);
-            if (elem.checked == true) {
-                elem.value = "true";
-            } else {
-                elem.value = "false";
-            }
-            alert("val "+elem.value);
+            return confirm("Bạn có đồng ý thay đổi ko?");
         }
     </script>
 </div>
